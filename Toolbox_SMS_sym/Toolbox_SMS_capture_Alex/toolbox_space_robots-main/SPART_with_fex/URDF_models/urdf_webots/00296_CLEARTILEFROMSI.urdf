@@ -1,0 +1,4175 @@
+<?xml version="1.0"?>
+<robot name="Spacecraft" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="SPACECRAFT_link">
+    <inertial>
+      <origin xyz="0.900000 0.000000 0.000000" />
+      <inertia ixx="3345.000000" ixy="0.000000" ixz="0.000000" iyy="2202.000000" iyz="0.000000" izz="2202.000000" />
+      <mass value="1960.000000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_joint" type="fixed">
+    <origin xyz="3.750000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_link" />
+  </joint>
+  <link name="CONTAINER_link">
+    <inertial>
+      <origin xyz="2.800000 0.000000 0.000000" />
+      <inertia ixx="2901.000000" ixy="0.000000" ixz="0.000000" iyy="3490.000000" iyz="0.000000" izz="3608.000000" />
+      <mass value="1132.000000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_0_link" />
+  </joint>
+  <link name="CONTAINER_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_1_link" />
+  </joint>
+  <link name="CONTAINER_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_2_link" />
+  </joint>
+  <link name="CONTAINER_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 -0.660421" rpy="0.000000 3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_3_link" />
+  </joint>
+  <link name="CONTAINER_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_4_link" />
+  </joint>
+  <link name="CONTAINER_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_5_link" />
+  </joint>
+  <link name="CONTAINER_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_6_joint" type="fixed">
+    <origin xyz="4.410000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_6_link" />
+  </joint>
+  <link name="CONTAINER_SI_6_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_7_joint" type="fixed">
+    <origin xyz="4.410000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_7_link" />
+  </joint>
+  <link name="CONTAINER_SI_7_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_8_joint" type="fixed">
+    <origin xyz="4.410000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_8_link" />
+  </joint>
+  <link name="CONTAINER_SI_8_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_9_joint" type="fixed">
+    <origin xyz="4.410000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_9_link" />
+  </joint>
+  <link name="CONTAINER_SI_9_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_10_joint" type="fixed">
+    <origin xyz="4.410000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_10_link" />
+  </joint>
+  <link name="CONTAINER_SI_10_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_11_joint" type="fixed">
+    <origin xyz="4.970000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_11_link" />
+  </joint>
+  <link name="CONTAINER_SI_11_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_12_joint" type="fixed">
+    <origin xyz="4.970000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_12_link" />
+  </joint>
+  <link name="CONTAINER_SI_12_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_13_joint" type="fixed">
+    <origin xyz="4.970000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_13_link" />
+  </joint>
+  <link name="CONTAINER_SI_13_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_14_joint" type="fixed">
+    <origin xyz="4.970000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_14_link" />
+  </joint>
+  <link name="CONTAINER_SI_14_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_15_joint" type="fixed">
+    <origin xyz="4.970000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_15_link" />
+  </joint>
+  <link name="CONTAINER_SI_15_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_16_joint" type="fixed">
+    <origin xyz="5.530000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_16_link" />
+  </joint>
+  <link name="CONTAINER_SI_16_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_17_joint" type="fixed">
+    <origin xyz="5.530000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_17_link" />
+  </joint>
+  <link name="CONTAINER_SI_17_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_18_joint" type="fixed">
+    <origin xyz="5.530000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_18_link" />
+  </joint>
+  <link name="CONTAINER_SI_18_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_19_joint" type="fixed">
+    <origin xyz="5.530000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_19_link" />
+  </joint>
+  <link name="CONTAINER_SI_19_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_20_joint" type="fixed">
+    <origin xyz="5.530000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_20_link" />
+  </joint>
+  <link name="CONTAINER_SI_20_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_21_joint" type="fixed">
+    <origin xyz="6.090000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_21_link" />
+  </joint>
+  <link name="CONTAINER_SI_21_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_22_joint" type="fixed">
+    <origin xyz="6.090000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_22_link" />
+  </joint>
+  <link name="CONTAINER_SI_22_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_23_joint" type="fixed">
+    <origin xyz="6.090000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_23_link" />
+  </joint>
+  <link name="CONTAINER_SI_23_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_24_joint" type="fixed">
+    <origin xyz="6.090000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_24_link" />
+  </joint>
+  <link name="CONTAINER_SI_24_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_25_joint" type="fixed">
+    <origin xyz="6.090000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_25_link" />
+  </joint>
+  <link name="CONTAINER_SI_25_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_26_joint" type="fixed">
+    <origin xyz="6.650000 0.000000 0.660421" rpy="0.000000 0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_26_link" />
+  </joint>
+  <link name="CONTAINER_SI_26_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_27_joint" type="fixed">
+    <origin xyz="6.650000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_27_link" />
+  </joint>
+  <link name="CONTAINER_SI_27_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_28_joint" type="fixed">
+    <origin xyz="6.650000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_28_link" />
+  </joint>
+  <link name="CONTAINER_SI_28_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_29_joint" type="fixed">
+    <origin xyz="6.650000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_29_link" />
+  </joint>
+  <link name="CONTAINER_SI_29_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_30_joint" type="fixed">
+    <origin xyz="6.650000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_30_link" />
+  </joint>
+  <link name="CONTAINER_SI_30_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_31_joint" type="fixed">
+    <origin xyz="7.210000 0.000000 0.660421" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_31_link" />
+  </joint>
+  <link name="CONTAINER_SI_31_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_32_joint" type="fixed">
+    <origin xyz="7.210000 -0.571941 0.330210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_32_link" />
+  </joint>
+  <link name="CONTAINER_SI_32_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_33_joint" type="fixed">
+    <origin xyz="7.210000 -0.571941 -0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_33_link" />
+  </joint>
+  <link name="CONTAINER_SI_33_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_34_joint" type="fixed">
+    <origin xyz="7.210000 0.571941 -0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_34_link" />
+  </joint>
+  <link name="CONTAINER_SI_34_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CONTAINER_SI_35_joint" type="fixed">
+    <origin xyz="7.210000 0.571941 0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CONTAINER_SI_35_link" />
+  </joint>
+  <link name="CONTAINER_SI_35_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="PREASSEMBLY_joint" type="fixed">
+    <origin xyz="8.950000 -0.000001 0.300000" rpy="-0.975281 -1.570803 0.975283" />
+    <parent link="SPACECRAFT_link" />
+    <child link="PREASSEMBLY_link" />
+  </joint>
+  <link name="PREASSEMBLY_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="PREASSEMBLY_SI_0_joint" type="fixed">
+    <origin xyz="9.610420 -0.000001 0.400002" rpy="1.570800 3.141587 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="PREASSEMBLY_SI_0_link" />
+  </joint>
+  <link name="PREASSEMBLY_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_joint" type="fixed">
+    <origin xyz="8.950000 -0.000003 0.800000" rpy="-1.537550 -1.570800 1.537550" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_link" />
+  </joint>
+  <link name="ASSEMBLY_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_CYLINDER1_joint" type="fixed">
+    <origin xyz="8.950000 -0.000001 0.250000" rpy="1.570800 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_CYLINDER1_link" />
+  </joint>
+  <link name="ASSEMBLY_CYLINDER1_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_CYLINDER2_joint" type="fixed">
+    <origin xyz="8.950000 -0.000002 0.650000" rpy="1.570800 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_CYLINDER2_link" />
+  </joint>
+  <link name="ASSEMBLY_CYLINDER2_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="OPTICS_joint" type="fixed">
+    <origin xyz="8.950000 -0.000004 1.000000" rpy="1.554440 -1.570800 1.587152" />
+    <parent link="SPACECRAFT_link" />
+    <child link="OPTICS_link" />
+  </joint>
+  <link name="OPTICS_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_0_joint" type="fixed">
+    <origin xyz="8.289579 -0.000003 0.900000" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_0_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_1_joint" type="fixed">
+    <origin xyz="8.619790 -0.571944 0.899998" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_1_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_2_joint" type="fixed">
+    <origin xyz="9.280210 -0.571944 0.899998" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_2_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_3_joint" type="fixed">
+    <origin xyz="9.610421 -0.000003 0.900000" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_3_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_4_joint" type="fixed">
+    <origin xyz="9.280210 0.571938 0.900002" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_4_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ASSEMBLY_SI_5_joint" type="fixed">
+    <origin xyz="8.619790 0.571938 0.900002" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ASSEMBLY_SI_5_link" />
+  </joint>
+  <link name="ASSEMBLY_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="SOLAR_PANEL1_joint" type="fixed">
+    <origin xyz="0.100000 0.000000 1.600000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="SOLAR_PANEL1_link" />
+  </joint>
+  <link name="SOLAR_PANEL1_link">
+    <inertial>
+      <origin xyz="0.001000 0.001000 3.845000" />
+      <inertia ixx="2151.820000" ixy="0.000000" ixz="0.000000" iyy="2134.830000" iyz="0.000000" izz="17.000000" />
+      <mass value="61.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="5" />
+      <mode_0 L="-6.400000 0.000000 0.000000 0.000000 -35.000000 0.000000" pulse="1.005300" damp="0.005000" />
+      <mode_1 L="0.000000 -6.700000 0.000000 35.400000 0.000000 0.000000" pulse="4.398000" damp="0.005000" />
+      <mode_2 L="-0.100000 -0.100000 0.000000 0.300000 0.000000 3.800000" pulse="6.785800" damp="0.005000" />
+      <mode_3 L="-3.200000 0.000000 0.000000 0.000000 -3.000000 -0.010000" pulse="7.602600" damp="0.005000" />
+      <mode_4 L="2.300000 0.000000 -0.300000 0.000000 1.300000 0.000000" pulse="19.163700" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="SOLAR_PANEL2_joint" type="fixed">
+    <origin xyz="0.100000 0.000000 -1.600000" rpy="3.141590 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="SOLAR_PANEL2_link" />
+  </joint>
+  <link name="SOLAR_PANEL2_link">
+    <inertial>
+      <origin xyz="0.001000 0.001000 3.845000" />
+      <inertia ixx="2151.820000" ixy="0.000000" ixz="0.000000" iyy="2134.830000" iyz="0.000000" izz="17.000000" />
+      <mass value="61.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="5" />
+      <mode_0 L="-6.400000 0.000000 0.000000 0.000000 -35.000000 0.000000" pulse="1.005300" damp="0.005000" />
+      <mode_1 L="0.000000 -6.700000 0.000000 35.400000 0.000000 0.000000" pulse="4.398000" damp="0.005000" />
+      <mode_2 L="-0.100000 -0.100000 0.000000 0.300000 0.000000 3.800000" pulse="6.785800" damp="0.005000" />
+      <mode_3 L="-3.200000 0.000000 0.000000 0.000000 -3.000000 -0.010000" pulse="7.602600" damp="0.005000" />
+      <mode_4 L="2.300000 0.000000 -0.300000 0.000000 1.300000 0.000000" pulse="19.163700" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="PAYLOAD_MODULE_joint" type="fixed">
+    <origin xyz="2.000000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="PAYLOAD_MODULE_link" />
+  </joint>
+  <link name="PAYLOAD_MODULE_link">
+    <inertial>
+      <origin xyz="0.550000 0.000000 0.000000" />
+      <inertia ixx="2458.000000" ixy="0.000000" ixz="0.000000" iyy="1499.000000" iyz="0.000000" izz="1499.000000" />
+      <mass value="1440.000000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="SUNSHIELD_ASSEMBLY_joint" type="fixed">
+    <origin xyz="0.900000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="SUNSHIELD_ASSEMBLY_link" />
+  </joint>
+  <link name="SUNSHIELD_ASSEMBLY_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="LONG_BEAM_0_joint" type="fixed">
+    <origin xyz="0.900000 0.000000 -1.600000" rpy="3.141590 -0.087267 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="LONG_BEAM_0_link" />
+  </joint>
+  <link name="LONG_BEAM_0_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 7.100000" />
+      <inertia ixx="1412.000000" ixy="0.000000" ixz="0.000000" iyy="1412.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="84.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="3" />
+      <mode_0 L="0.000000 -6.600000 0.100000 15.300000 0.000000 0.200000" pulse="14.074335" damp="0.005000" />
+      <mode_1 L="-6.700000 0.000000 -0.100000 0.000000 -15.400000 0.400000" pulse="44.422000" damp="0.005000" />
+      <mode_2 L="0.000000 -3.500000 0.700000 1.700000 0.000000 0.100000" pulse="86.959000" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="LONG_BEAM_1_joint" type="fixed">
+    <origin xyz="0.900000 0.000000 1.600000" rpy="0.000000 0.087266 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="LONG_BEAM_1_link" />
+  </joint>
+  <link name="LONG_BEAM_1_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 7.100000" />
+      <inertia ixx="1412.000000" ixy="0.000000" ixz="0.000000" iyy="1412.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="84.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="3" />
+      <mode_0 L="0.000000 -6.600000 0.100000 15.300000 0.000000 0.200000" pulse="14.074335" damp="0.005000" />
+      <mode_1 L="-6.700000 0.000000 -0.100000 0.000000 -15.400000 0.400000" pulse="44.422000" damp="0.005000" />
+      <mode_2 L="0.000000 -3.500000 0.700000 1.700000 0.000000 0.100000" pulse="86.959000" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="MEDIUM_BEAM_0_joint" type="fixed">
+    <origin xyz="0.900000 1.600000 0.000000" rpy="3.141593 -3.141593 3.054327" />
+    <parent link="SPACECRAFT_link" />
+    <child link="MEDIUM_BEAM_0_link" />
+  </joint>
+  <link name="MEDIUM_BEAM_0_link">
+    <inertial>
+      <origin xyz="0.000000 5.650000 0.000000" />
+      <inertia ixx="703.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="703.000000" />
+      <mass value="66.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="3" />
+      <mode_0 L="0.000000 -6.600000 0.100000 15.300000 0.000000 0.200000" pulse="14.074335" damp="0.005000" />
+      <mode_1 L="-6.700000 0.000000 -0.100000 0.000000 -15.400000 0.400000" pulse="44.422000" damp="0.005000" />
+      <mode_2 L="0.000000 -3.500000 0.700000 1.700000 0.000000 0.100000" pulse="86.959000" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="MEDIUM_BEAM_1_joint" type="fixed">
+    <origin xyz="0.900000 -1.600000 0.000000" rpy="3.141585 0.000000 0.087264" />
+    <parent link="SPACECRAFT_link" />
+    <child link="MEDIUM_BEAM_1_link" />
+  </joint>
+  <link name="MEDIUM_BEAM_1_link">
+    <inertial>
+      <origin xyz="0.000000 5.650000 0.000000" />
+      <inertia ixx="703.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="703.000000" />
+      <mass value="66.000000" />
+    </inertial>
+    <stiffness value="flexible">
+      <mode_number value="3" />
+      <mode_0 L="0.000000 -6.600000 0.100000 15.300000 0.000000 0.200000" pulse="14.074335" damp="0.005000" />
+      <mode_1 L="-6.700000 0.000000 -0.100000 0.000000 -15.400000 0.400000" pulse="44.422000" damp="0.005000" />
+      <mode_2 L="0.000000 -3.500000 0.700000 1.700000 0.000000 0.100000" pulse="86.959000" damp="0.005000" />
+    </stiffness>
+  </link>
+  <joint name="GYROSCOPE_0_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 0.785398 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="GYROSCOPE_0_link" />
+  </joint>
+  <link name="GYROSCOPE_0_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="GYROSCOPE_1_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="3.141593 0.785398 3.141593" />
+    <parent link="SPACECRAFT_link" />
+    <child link="GYROSCOPE_1_link" />
+  </joint>
+  <link name="GYROSCOPE_1_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="GYROSCOPE_2_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="-1.570798 2.356194 3.141592" />
+    <parent link="SPACECRAFT_link" />
+    <child link="GYROSCOPE_2_link" />
+  </joint>
+  <link name="GYROSCOPE_2_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="GYROSCOPE_3_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="-1.570794 0.785398 0.000001" />
+    <parent link="SPACECRAFT_link" />
+    <child link="GYROSCOPE_3_link" />
+  </joint>
+  <link name="GYROSCOPE_3_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="STARTRACKER_0_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="STARTRACKER_0_link" />
+  </joint>
+  <link name="STARTRACKER_0_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="STARTRACKER_1_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="STARTRACKER_1_link" />
+  </joint>
+  <link name="STARTRACKER_1_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_0_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_0_link" />
+  </joint>
+  <link name="REACTIONWHEEL_0_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_1_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="1.577870 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_1_link" />
+  </joint>
+  <link name="REACTIONWHEEL_1_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_2_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="3.141593 1.563723 3.141593" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_2_link" />
+  </joint>
+  <link name="REACTIONWHEEL_2_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_3_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="0.000000 -0.000000 3.141500" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_3_link" />
+  </joint>
+  <link name="REACTIONWHEEL_3_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_4_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="-1.577870 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_4_link" />
+  </joint>
+  <link name="REACTIONWHEEL_4_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="REACTIONWHEEL_5_joint" type="fixed">
+    <origin xyz="0.000000 0.000000 0.000000" rpy="-3.141593 -1.563723 3.141593" />
+    <parent link="SPACECRAFT_link" />
+    <child link="REACTIONWHEEL_5_link" />
+  </joint>
+  <link name="REACTIONWHEEL_5_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ARM_joint" type="fixed">
+    <origin xyz="4.250000 0.000000 -0.530000" rpy="3.141590 -0.000000 0.000000" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ARM_link" />
+  </joint>
+  <link name="ARM_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="ARM_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 -0.910421" rpy="-0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="ARM_SI_0_link" />
+  </joint>
+  <link name="ARM_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_joint" type="fixed">
+    <origin xyz="9.610421 -1.143885 0.799996" rpy="-0.000000 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_link" />
+  </joint>
+  <link name="TILE_0_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_0_joint" type="fixed">
+    <origin xyz="8.950000 -1.143885 0.899996" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_0_link" />
+  </joint>
+  <link name="TILE_0_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_1_joint" type="fixed">
+    <origin xyz="9.280210 -1.715826 0.899994" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_1_link" />
+  </joint>
+  <link name="TILE_0_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_2_joint" type="fixed">
+    <origin xyz="9.940631 -1.715827 0.899994" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_2_link" />
+  </joint>
+  <link name="TILE_0_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_3_joint" type="fixed">
+    <origin xyz="10.270841 -1.143886 0.899996" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_3_link" />
+  </joint>
+  <link name="TILE_0_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_4_joint" type="fixed">
+    <origin xyz="9.940631 -0.571944 0.899998" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_4_link" />
+  </joint>
+  <link name="TILE_0_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_0_SI_5_joint" type="fixed">
+    <origin xyz="9.280210 -0.571944 0.899998" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_0_SI_5_link" />
+  </joint>
+  <link name="TILE_0_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_joint" type="fixed">
+    <origin xyz="10.270841 -0.000003 0.800000" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_link" />
+  </joint>
+  <link name="TILE_1_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_0_joint" type="fixed">
+    <origin xyz="9.940631 -0.571944 0.899998" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_0_link" />
+  </joint>
+  <link name="TILE_1_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_1_joint" type="fixed">
+    <origin xyz="10.601052 -0.571945 0.899998" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_1_link" />
+  </joint>
+  <link name="TILE_1_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_2_joint" type="fixed">
+    <origin xyz="10.931262 -0.000004 0.900000" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_2_link" />
+  </joint>
+  <link name="TILE_1_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_3_joint" type="fixed">
+    <origin xyz="10.601052 0.571938 0.900002" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_3_link" />
+  </joint>
+  <link name="TILE_1_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_4_joint" type="fixed">
+    <origin xyz="9.940631 0.571938 0.900002" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_4_link" />
+  </joint>
+  <link name="TILE_1_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_1_SI_5_joint" type="fixed">
+    <origin xyz="9.610421 -0.000003 0.900000" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_1_SI_5_link" />
+  </joint>
+  <link name="TILE_1_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_joint" type="fixed">
+    <origin xyz="12.252103 -1.143885 0.799996" rpy="-0.000000 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_link" />
+  </joint>
+  <link name="TILE_2_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_0_joint" type="fixed">
+    <origin xyz="11.591682 -1.143886 0.899996" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_0_link" />
+  </joint>
+  <link name="TILE_2_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_1_joint" type="fixed">
+    <origin xyz="11.921893 -1.715827 0.899994" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_1_link" />
+  </joint>
+  <link name="TILE_2_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_2_joint" type="fixed">
+    <origin xyz="12.582313 -1.715827 0.899994" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_2_link" />
+  </joint>
+  <link name="TILE_2_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_3_joint" type="fixed">
+    <origin xyz="12.912524 -1.143886 0.899996" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_3_link" />
+  </joint>
+  <link name="TILE_2_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_4_joint" type="fixed">
+    <origin xyz="12.582313 -0.571945 0.899998" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_4_link" />
+  </joint>
+  <link name="TILE_2_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_2_SI_5_joint" type="fixed">
+    <origin xyz="11.921893 -0.571945 0.899998" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_2_SI_5_link" />
+  </joint>
+  <link name="TILE_2_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_joint" type="fixed">
+    <origin xyz="10.931262 -1.143885 0.799996" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_link" />
+  </joint>
+  <link name="TILE_3_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_0_joint" type="fixed">
+    <origin xyz="10.601051 -1.715827 0.899994" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_0_link" />
+  </joint>
+  <link name="TILE_3_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_1_joint" type="fixed">
+    <origin xyz="11.261472 -1.715827 0.899994" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_1_link" />
+  </joint>
+  <link name="TILE_3_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_2_joint" type="fixed">
+    <origin xyz="11.591682 -1.143886 0.899996" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_2_link" />
+  </joint>
+  <link name="TILE_3_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_3_joint" type="fixed">
+    <origin xyz="11.261472 -0.571945 0.899998" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_3_link" />
+  </joint>
+  <link name="TILE_3_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_4_joint" type="fixed">
+    <origin xyz="10.601052 -0.571945 0.899998" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_4_link" />
+  </joint>
+  <link name="TILE_3_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_3_SI_5_joint" type="fixed">
+    <origin xyz="10.270841 -1.143886 0.899996" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_3_SI_5_link" />
+  </joint>
+  <link name="TILE_3_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_joint" type="fixed">
+    <origin xyz="9.610421 1.143879 0.800004" rpy="3.141590 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_link" />
+  </joint>
+  <link name="TILE_4_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_0_joint" type="fixed">
+    <origin xyz="9.940631 0.571938 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_0_link" />
+  </joint>
+  <link name="TILE_4_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_1_joint" type="fixed">
+    <origin xyz="10.270841 1.143879 0.900004" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_1_link" />
+  </joint>
+  <link name="TILE_4_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_2_joint" type="fixed">
+    <origin xyz="9.940631 1.715820 0.900006" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_2_link" />
+  </joint>
+  <link name="TILE_4_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_3_joint" type="fixed">
+    <origin xyz="9.280211 1.715820 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_3_link" />
+  </joint>
+  <link name="TILE_4_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_4_joint" type="fixed">
+    <origin xyz="8.950000 1.143879 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_4_link" />
+  </joint>
+  <link name="TILE_4_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_4_SI_5_joint" type="fixed">
+    <origin xyz="9.280210 0.571938 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_4_SI_5_link" />
+  </joint>
+  <link name="TILE_4_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_joint" type="fixed">
+    <origin xyz="11.591682 -2.287767 0.799992" rpy="0.000003 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_link" />
+  </joint>
+  <link name="TILE_5_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_0_joint" type="fixed">
+    <origin xyz="11.261472 -1.715827 0.899994" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_0_link" />
+  </joint>
+  <link name="TILE_5_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_1_joint" type="fixed">
+    <origin xyz="10.601051 -2.859709 0.899990" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_1_link" />
+  </joint>
+  <link name="TILE_5_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_2_joint" type="fixed">
+    <origin xyz="11.261472 -2.859709 0.899990" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_2_link" />
+  </joint>
+  <link name="TILE_5_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_3_joint" type="fixed">
+    <origin xyz="11.921893 -2.859709 0.899990" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_3_link" />
+  </joint>
+  <link name="TILE_5_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_4_joint" type="fixed">
+    <origin xyz="12.252103 -2.287768 0.899992" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_4_link" />
+  </joint>
+  <link name="TILE_5_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_5_SI_5_joint" type="fixed">
+    <origin xyz="11.921893 -1.715827 0.899994" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_5_SI_5_link" />
+  </joint>
+  <link name="TILE_5_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_joint" type="fixed">
+    <origin xyz="10.270841 -2.287767 0.799992" rpy="-3.141593 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_link" />
+  </joint>
+  <link name="TILE_6_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_0_joint" type="fixed">
+    <origin xyz="10.931262 -2.287768 0.899992" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_0_link" />
+  </joint>
+  <link name="TILE_6_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_1_joint" type="fixed">
+    <origin xyz="10.601051 -1.715827 0.899994" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_1_link" />
+  </joint>
+  <link name="TILE_6_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_2_joint" type="fixed">
+    <origin xyz="9.940631 -1.715827 0.899994" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_2_link" />
+  </joint>
+  <link name="TILE_6_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_3_joint" type="fixed">
+    <origin xyz="9.610420 -2.287768 0.899992" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_3_link" />
+  </joint>
+  <link name="TILE_6_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_4_joint" type="fixed">
+    <origin xyz="9.940631 -2.859709 0.899990" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_4_link" />
+  </joint>
+  <link name="TILE_6_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_6_SI_5_joint" type="fixed">
+    <origin xyz="10.601051 -2.859709 0.899990" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_6_SI_5_link" />
+  </joint>
+  <link name="TILE_6_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_joint" type="fixed">
+    <origin xyz="11.591683 2.287761 0.800008" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_link" />
+  </joint>
+  <link name="TILE_7_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_0_joint" type="fixed">
+    <origin xyz="11.261472 1.715820 0.900006" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_0_link" />
+  </joint>
+  <link name="TILE_7_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_1_joint" type="fixed">
+    <origin xyz="11.921893 1.715819 0.900006" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_1_link" />
+  </joint>
+  <link name="TILE_7_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_2_joint" type="fixed">
+    <origin xyz="12.252103 2.287761 0.900009" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_2_link" />
+  </joint>
+  <link name="TILE_7_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_3_joint" type="fixed">
+    <origin xyz="11.921893 2.859702 0.900011" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_3_link" />
+  </joint>
+  <link name="TILE_7_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_4_joint" type="fixed">
+    <origin xyz="11.261473 2.859702 0.900010" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_4_link" />
+  </joint>
+  <link name="TILE_7_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_7_SI_5_joint" type="fixed">
+    <origin xyz="10.931262 2.287761 0.900008" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_7_SI_5_link" />
+  </joint>
+  <link name="TILE_7_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_joint" type="fixed">
+    <origin xyz="10.931262 1.143879 0.800004" rpy="3.141590 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_link" />
+  </joint>
+  <link name="TILE_8_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_0_joint" type="fixed">
+    <origin xyz="11.261472 0.571937 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_0_link" />
+  </joint>
+  <link name="TILE_8_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_1_joint" type="fixed">
+    <origin xyz="11.591683 1.143878 0.900004" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_1_link" />
+  </joint>
+  <link name="TILE_8_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_2_joint" type="fixed">
+    <origin xyz="11.261472 1.715820 0.900006" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_2_link" />
+  </joint>
+  <link name="TILE_8_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_3_joint" type="fixed">
+    <origin xyz="10.601052 1.715820 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_3_link" />
+  </joint>
+  <link name="TILE_8_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_4_joint" type="fixed">
+    <origin xyz="10.270841 1.143879 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_4_link" />
+  </joint>
+  <link name="TILE_8_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_8_SI_5_joint" type="fixed">
+    <origin xyz="10.601052 0.571938 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_8_SI_5_link" />
+  </joint>
+  <link name="TILE_8_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_joint" type="fixed">
+    <origin xyz="9.610420 -3.431649 0.799988" rpy="-3.141590 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_link" />
+  </joint>
+  <link name="TILE_9_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_0_joint" type="fixed">
+    <origin xyz="9.940631 -2.859709 0.899990" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_0_link" />
+  </joint>
+  <link name="TILE_9_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_1_joint" type="fixed">
+    <origin xyz="9.280210 -2.859709 0.899990" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_1_link" />
+  </joint>
+  <link name="TILE_9_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_2_joint" type="fixed">
+    <origin xyz="8.950000 -3.431650 0.899988" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_2_link" />
+  </joint>
+  <link name="TILE_9_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_3_joint" type="fixed">
+    <origin xyz="9.280210 -4.003591 0.899986" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_3_link" />
+  </joint>
+  <link name="TILE_9_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_4_joint" type="fixed">
+    <origin xyz="9.940630 -4.003591 0.899986" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_4_link" />
+  </joint>
+  <link name="TILE_9_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_9_SI_5_joint" type="fixed">
+    <origin xyz="10.270841 -3.431650 0.899988" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_9_SI_5_link" />
+  </joint>
+  <link name="TILE_9_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_joint" type="fixed">
+    <origin xyz="12.252103 1.143879 0.800004" rpy="-0.000000 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_link" />
+  </joint>
+  <link name="TILE_10_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_0_joint" type="fixed">
+    <origin xyz="11.591683 1.143878 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_0_link" />
+  </joint>
+  <link name="TILE_10_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_1_joint" type="fixed">
+    <origin xyz="11.921893 0.571937 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_1_link" />
+  </joint>
+  <link name="TILE_10_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_2_joint" type="fixed">
+    <origin xyz="12.582314 0.571937 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_2_link" />
+  </joint>
+  <link name="TILE_10_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_3_joint" type="fixed">
+    <origin xyz="12.912524 1.143878 0.900005" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_3_link" />
+  </joint>
+  <link name="TILE_10_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_4_joint" type="fixed">
+    <origin xyz="12.582314 1.715819 0.900007" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_4_link" />
+  </joint>
+  <link name="TILE_10_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_10_SI_5_joint" type="fixed">
+    <origin xyz="11.921893 1.715819 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_10_SI_5_link" />
+  </joint>
+  <link name="TILE_10_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_joint" type="fixed">
+    <origin xyz="11.591683 -0.000003 0.800000" rpy="0.000003 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_link" />
+  </joint>
+  <link name="TILE_11_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_0_joint" type="fixed">
+    <origin xyz="11.261472 0.571937 0.900002" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_0_link" />
+  </joint>
+  <link name="TILE_11_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_1_joint" type="fixed">
+    <origin xyz="10.931262 -0.000004 0.900000" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_1_link" />
+  </joint>
+  <link name="TILE_11_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_2_joint" type="fixed">
+    <origin xyz="11.261472 -0.571945 0.899998" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_2_link" />
+  </joint>
+  <link name="TILE_11_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_3_joint" type="fixed">
+    <origin xyz="11.921893 -0.571945 0.899998" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_3_link" />
+  </joint>
+  <link name="TILE_11_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_4_joint" type="fixed">
+    <origin xyz="12.252103 -0.000004 0.900000" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_4_link" />
+  </joint>
+  <link name="TILE_11_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_11_SI_5_joint" type="fixed">
+    <origin xyz="11.921893 0.571937 0.900002" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_11_SI_5_link" />
+  </joint>
+  <link name="TILE_11_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_joint" type="fixed">
+    <origin xyz="7.629159 -0.000003 0.800000" rpy="-3.141590 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_link" />
+  </joint>
+  <link name="TILE_12_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_0_joint" type="fixed">
+    <origin xyz="7.959369 0.571938 0.900002" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_0_link" />
+  </joint>
+  <link name="TILE_12_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_1_joint" type="fixed">
+    <origin xyz="7.298948 0.571938 0.900002" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_1_link" />
+  </joint>
+  <link name="TILE_12_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_2_joint" type="fixed">
+    <origin xyz="6.968738 -0.000003 0.900000" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_2_link" />
+  </joint>
+  <link name="TILE_12_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_3_joint" type="fixed">
+    <origin xyz="7.298948 -0.571944 0.899998" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_3_link" />
+  </joint>
+  <link name="TILE_12_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_4_joint" type="fixed">
+    <origin xyz="7.959369 -0.571944 0.899998" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_4_link" />
+  </joint>
+  <link name="TILE_12_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_12_SI_5_joint" type="fixed">
+    <origin xyz="8.289579 -0.000003 0.900000" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_12_SI_5_link" />
+  </joint>
+  <link name="TILE_12_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_joint" type="fixed">
+    <origin xyz="8.289579 1.143879 0.800004" rpy="-3.141593 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_link" />
+  </joint>
+  <link name="TILE_13_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_0_joint" type="fixed">
+    <origin xyz="8.950000 1.143879 0.900004" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_0_link" />
+  </joint>
+  <link name="TILE_13_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_1_joint" type="fixed">
+    <origin xyz="8.619790 1.715820 0.900006" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_1_link" />
+  </joint>
+  <link name="TILE_13_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_2_joint" type="fixed">
+    <origin xyz="7.959369 1.715820 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_2_link" />
+  </joint>
+  <link name="TILE_13_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_3_joint" type="fixed">
+    <origin xyz="7.629159 1.143879 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_3_link" />
+  </joint>
+  <link name="TILE_13_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_4_joint" type="fixed">
+    <origin xyz="7.959369 0.571938 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_4_link" />
+  </joint>
+  <link name="TILE_13_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_13_SI_5_joint" type="fixed">
+    <origin xyz="8.619790 0.571938 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_13_SI_5_link" />
+  </joint>
+  <link name="TILE_13_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_joint" type="fixed">
+    <origin xyz="12.912524 -0.000003 0.800000" rpy="-0.000000 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_link" />
+  </joint>
+  <link name="TILE_14_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_0_joint" type="fixed">
+    <origin xyz="12.252103 -0.000004 0.900000" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_0_link" />
+  </joint>
+  <link name="TILE_14_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_1_joint" type="fixed">
+    <origin xyz="12.582313 -0.571945 0.899998" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_1_link" />
+  </joint>
+  <link name="TILE_14_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_2_joint" type="fixed">
+    <origin xyz="13.242734 -0.571945 0.899998" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_2_link" />
+  </joint>
+  <link name="TILE_14_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_3_joint" type="fixed">
+    <origin xyz="13.572944 -0.000004 0.900001" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_3_link" />
+  </joint>
+  <link name="TILE_14_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_4_joint" type="fixed">
+    <origin xyz="13.242734 0.571937 0.900003" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_4_link" />
+  </joint>
+  <link name="TILE_14_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_14_SI_5_joint" type="fixed">
+    <origin xyz="12.582314 0.571937 0.900002" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_14_SI_5_link" />
+  </joint>
+  <link name="TILE_14_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_joint" type="fixed">
+    <origin xyz="8.289579 -1.143885 0.799996" rpy="0.000003 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_link" />
+  </joint>
+  <link name="TILE_15_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_0_joint" type="fixed">
+    <origin xyz="7.959369 -0.571944 0.899998" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_0_link" />
+  </joint>
+  <link name="TILE_15_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_1_joint" type="fixed">
+    <origin xyz="7.629159 -1.143885 0.899996" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_1_link" />
+  </joint>
+  <link name="TILE_15_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_2_joint" type="fixed">
+    <origin xyz="7.959369 -1.715826 0.899994" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_2_link" />
+  </joint>
+  <link name="TILE_15_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_3_joint" type="fixed">
+    <origin xyz="8.619789 -1.715826 0.899994" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_3_link" />
+  </joint>
+  <link name="TILE_15_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_4_joint" type="fixed">
+    <origin xyz="8.950000 -1.143885 0.899996" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_4_link" />
+  </joint>
+  <link name="TILE_15_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_15_SI_5_joint" type="fixed">
+    <origin xyz="8.619790 -0.571944 0.899998" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_15_SI_5_link" />
+  </joint>
+  <link name="TILE_15_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_joint" type="fixed">
+    <origin xyz="8.950000 2.287761 0.800008" rpy="-3.141593 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_link" />
+  </joint>
+  <link name="TILE_16_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_0_joint" type="fixed">
+    <origin xyz="9.610421 2.287761 0.900008" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_0_link" />
+  </joint>
+  <link name="TILE_16_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_1_joint" type="fixed">
+    <origin xyz="9.280211 2.859702 0.900010" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_1_link" />
+  </joint>
+  <link name="TILE_16_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_2_joint" type="fixed">
+    <origin xyz="8.619790 2.859702 0.900010" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_2_link" />
+  </joint>
+  <link name="TILE_16_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_3_joint" type="fixed">
+    <origin xyz="8.289580 2.287761 0.900008" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_3_link" />
+  </joint>
+  <link name="TILE_16_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_4_joint" type="fixed">
+    <origin xyz="8.619790 1.715820 0.900006" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_4_link" />
+  </joint>
+  <link name="TILE_16_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_16_SI_5_joint" type="fixed">
+    <origin xyz="9.280211 1.715820 0.900006" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_16_SI_5_link" />
+  </joint>
+  <link name="TILE_16_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_joint" type="fixed">
+    <origin xyz="10.270842 2.287761 0.800008" rpy="-0.000000 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_link" />
+  </joint>
+  <link name="TILE_17_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_0_joint" type="fixed">
+    <origin xyz="9.610421 2.287761 0.900008" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_0_link" />
+  </joint>
+  <link name="TILE_17_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_1_joint" type="fixed">
+    <origin xyz="9.940631 1.715820 0.900006" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_1_link" />
+  </joint>
+  <link name="TILE_17_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_2_joint" type="fixed">
+    <origin xyz="10.601052 1.715820 0.900006" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_2_link" />
+  </joint>
+  <link name="TILE_17_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_3_joint" type="fixed">
+    <origin xyz="10.931262 2.287761 0.900008" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_3_link" />
+  </joint>
+  <link name="TILE_17_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_4_joint" type="fixed">
+    <origin xyz="10.601052 2.859702 0.900010" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_4_link" />
+  </joint>
+  <link name="TILE_17_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_17_SI_5_joint" type="fixed">
+    <origin xyz="9.940631 2.859702 0.900010" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_17_SI_5_link" />
+  </joint>
+  <link name="TILE_17_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_joint" type="fixed">
+    <origin xyz="9.610421 3.431643 0.800012" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_link" />
+  </joint>
+  <link name="TILE_18_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_0_joint" type="fixed">
+    <origin xyz="9.280211 2.859702 0.900010" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_0_link" />
+  </joint>
+  <link name="TILE_18_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_1_joint" type="fixed">
+    <origin xyz="9.940631 2.859702 0.900010" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_1_link" />
+  </joint>
+  <link name="TILE_18_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_2_joint" type="fixed">
+    <origin xyz="10.270842 3.431643 0.900012" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_2_link" />
+  </joint>
+  <link name="TILE_18_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_3_joint" type="fixed">
+    <origin xyz="9.940631 4.003584 0.900014" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_3_link" />
+  </joint>
+  <link name="TILE_18_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_4_joint" type="fixed">
+    <origin xyz="9.280211 4.003584 0.900014" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_4_link" />
+  </joint>
+  <link name="TILE_18_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_18_SI_5_joint" type="fixed">
+    <origin xyz="8.950000 3.431643 0.900012" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_18_SI_5_link" />
+  </joint>
+  <link name="TILE_18_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_joint" type="fixed">
+    <origin xyz="8.289580 3.431643 0.800012" rpy="3.141590 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_link" />
+  </joint>
+  <link name="TILE_19_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_0_joint" type="fixed">
+    <origin xyz="8.619790 2.859702 0.900010" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_0_link" />
+  </joint>
+  <link name="TILE_19_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_1_joint" type="fixed">
+    <origin xyz="8.950000 3.431643 0.900012" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_1_link" />
+  </joint>
+  <link name="TILE_19_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_2_joint" type="fixed">
+    <origin xyz="8.619790 4.003584 0.900014" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_2_link" />
+  </joint>
+  <link name="TILE_19_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_3_joint" type="fixed">
+    <origin xyz="7.959370 4.003584 0.900014" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_3_link" />
+  </joint>
+  <link name="TILE_19_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_4_joint" type="fixed">
+    <origin xyz="7.629159 3.431643 0.900012" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_4_link" />
+  </joint>
+  <link name="TILE_19_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_19_SI_5_joint" type="fixed">
+    <origin xyz="7.959369 2.859702 0.900010" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_19_SI_5_link" />
+  </joint>
+  <link name="TILE_19_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_joint" type="fixed">
+    <origin xyz="10.931262 3.431643 0.800012" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_link" />
+  </joint>
+  <link name="TILE_20_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_0_joint" type="fixed">
+    <origin xyz="10.601052 2.859702 0.900010" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_0_link" />
+  </joint>
+  <link name="TILE_20_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_1_joint" type="fixed">
+    <origin xyz="11.261473 2.859702 0.900010" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_1_link" />
+  </joint>
+  <link name="TILE_20_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_2_joint" type="fixed">
+    <origin xyz="11.591683 3.431643 0.900013" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_2_link" />
+  </joint>
+  <link name="TILE_20_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_3_joint" type="fixed">
+    <origin xyz="11.261473 4.003584 0.900015" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_3_link" />
+  </joint>
+  <link name="TILE_20_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_4_joint" type="fixed">
+    <origin xyz="10.601052 4.003584 0.900014" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_4_link" />
+  </joint>
+  <link name="TILE_20_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_20_SI_5_joint" type="fixed">
+    <origin xyz="10.270842 3.431643 0.900012" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_20_SI_5_link" />
+  </joint>
+  <link name="TILE_20_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_joint" type="fixed">
+    <origin xyz="6.968738 1.143879 0.800004" rpy="-3.141590 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_link" />
+  </joint>
+  <link name="TILE_21_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_0_joint" type="fixed">
+    <origin xyz="7.298949 1.715820 0.900006" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_0_link" />
+  </joint>
+  <link name="TILE_21_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_1_joint" type="fixed">
+    <origin xyz="6.638528 1.715820 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_1_link" />
+  </joint>
+  <link name="TILE_21_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_2_joint" type="fixed">
+    <origin xyz="6.308318 1.143879 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_2_link" />
+  </joint>
+  <link name="TILE_21_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_3_joint" type="fixed">
+    <origin xyz="6.638528 0.571938 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_3_link" />
+  </joint>
+  <link name="TILE_21_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_4_joint" type="fixed">
+    <origin xyz="7.298948 0.571938 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_4_link" />
+  </joint>
+  <link name="TILE_21_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_21_SI_5_joint" type="fixed">
+    <origin xyz="7.629159 1.143879 0.900004" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_21_SI_5_link" />
+  </joint>
+  <link name="TILE_21_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_joint" type="fixed">
+    <origin xyz="7.629159 2.287761 0.800008" rpy="-0.000003 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_link" />
+  </joint>
+  <link name="TILE_22_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_0_joint" type="fixed">
+    <origin xyz="7.298949 1.715820 0.900006" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_0_link" />
+  </joint>
+  <link name="TILE_22_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_1_joint" type="fixed">
+    <origin xyz="7.959369 1.715820 0.900006" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_1_link" />
+  </joint>
+  <link name="TILE_22_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_2_joint" type="fixed">
+    <origin xyz="8.289580 2.287761 0.900008" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_2_link" />
+  </joint>
+  <link name="TILE_22_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_3_joint" type="fixed">
+    <origin xyz="7.959369 2.859702 0.900010" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_3_link" />
+  </joint>
+  <link name="TILE_22_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_4_joint" type="fixed">
+    <origin xyz="7.298949 2.859702 0.900010" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_4_link" />
+  </joint>
+  <link name="TILE_22_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_22_SI_5_joint" type="fixed">
+    <origin xyz="6.968738 2.287761 0.900008" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_22_SI_5_link" />
+  </joint>
+  <link name="TILE_22_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_joint" type="fixed">
+    <origin xyz="6.308318 2.287762 0.800008" rpy="3.141590 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_link" />
+  </joint>
+  <link name="TILE_23_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_0_joint" type="fixed">
+    <origin xyz="6.638528 1.715820 0.900006" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_0_link" />
+  </joint>
+  <link name="TILE_23_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_1_joint" type="fixed">
+    <origin xyz="6.968738 2.287761 0.900008" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_1_link" />
+  </joint>
+  <link name="TILE_23_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_2_joint" type="fixed">
+    <origin xyz="6.638528 2.859702 0.900010" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_2_link" />
+  </joint>
+  <link name="TILE_23_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_3_joint" type="fixed">
+    <origin xyz="5.978107 2.859702 0.900010" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_3_link" />
+  </joint>
+  <link name="TILE_23_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_4_joint" type="fixed">
+    <origin xyz="5.647897 2.287761 0.900008" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_4_link" />
+  </joint>
+  <link name="TILE_23_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_23_SI_5_joint" type="fixed">
+    <origin xyz="5.978107 1.715820 0.900006" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_23_SI_5_link" />
+  </joint>
+  <link name="TILE_23_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_joint" type="fixed">
+    <origin xyz="5.647897 1.143880 0.800004" rpy="-3.141593 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_link" />
+  </joint>
+  <link name="TILE_24_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_0_joint" type="fixed">
+    <origin xyz="6.308318 1.143879 0.900004" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_0_link" />
+  </joint>
+  <link name="TILE_24_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_1_joint" type="fixed">
+    <origin xyz="5.978107 1.715820 0.900006" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_1_link" />
+  </joint>
+  <link name="TILE_24_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_2_joint" type="fixed">
+    <origin xyz="5.317687 1.715820 0.900006" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_2_link" />
+  </joint>
+  <link name="TILE_24_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_3_joint" type="fixed">
+    <origin xyz="4.987476 1.143879 0.900004" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_3_link" />
+  </joint>
+  <link name="TILE_24_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_4_joint" type="fixed">
+    <origin xyz="5.317687 0.571938 0.900002" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_4_link" />
+  </joint>
+  <link name="TILE_24_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_24_SI_5_joint" type="fixed">
+    <origin xyz="5.978107 0.571938 0.900002" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_24_SI_5_link" />
+  </joint>
+  <link name="TILE_24_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_joint" type="fixed">
+    <origin xyz="6.968738 3.431644 0.800012" rpy="3.141590 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_link" />
+  </joint>
+  <link name="TILE_25_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_0_joint" type="fixed">
+    <origin xyz="7.298949 2.859702 0.900010" rpy="1.570793 3.141591 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_0_link" />
+  </joint>
+  <link name="TILE_25_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_1_joint" type="fixed">
+    <origin xyz="7.629159 3.431643 0.900012" rpy="1.570796 3.141589 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_1_link" />
+  </joint>
+  <link name="TILE_25_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_2_joint" type="fixed">
+    <origin xyz="7.298949 4.003584 0.900014" rpy="1.570799 3.141591 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_2_link" />
+  </joint>
+  <link name="TILE_25_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_3_joint" type="fixed">
+    <origin xyz="6.638528 4.003584 0.900014" rpy="-1.570793 -0.000002 0.523599" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_3_link" />
+  </joint>
+  <link name="TILE_25_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_4_joint" type="fixed">
+    <origin xyz="6.308318 3.431643 0.900012" rpy="-1.570796 -0.000004 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_4_link" />
+  </joint>
+  <link name="TILE_25_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_25_SI_5_joint" type="fixed">
+    <origin xyz="6.638528 2.859702 0.900010" rpy="-1.570799 -0.000002 2.617994" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_25_SI_5_link" />
+  </joint>
+  <link name="TILE_25_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_joint" type="fixed">
+    <origin xyz="10.931260 1.143884 0.300013" rpy="-0.000006 0.000000 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_link" />
+  </joint>
+  <link name="TILE_26_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_0_joint" type="fixed">
+    <origin xyz="10.601050 0.571942 0.400009" rpy="-1.570803 0.000000 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_0_link" />
+  </joint>
+  <link name="TILE_26_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_1_joint" type="fixed">
+    <origin xyz="11.261471 0.571943 0.400011" rpy="1.570794 3.141587 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_1_link" />
+  </joint>
+  <link name="TILE_26_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_2_joint" type="fixed">
+    <origin xyz="11.591680 1.143885 0.400016" rpy="1.570800 3.141587 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_2_link" />
+  </joint>
+  <link name="TILE_26_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_3_joint" type="fixed">
+    <origin xyz="11.261469 1.715825 0.400017" rpy="1.570803 -3.141592 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_3_link" />
+  </joint>
+  <link name="TILE_26_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_4_joint" type="fixed">
+    <origin xyz="10.601048 1.715824 0.400015" rpy="-1.570794 -0.000006 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_4_link" />
+  </joint>
+  <link name="TILE_26_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_26_SI_5_joint" type="fixed">
+    <origin xyz="10.270839 1.143883 0.400011" rpy="-1.570800 -0.000005 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_26_SI_5_link" />
+  </joint>
+  <link name="TILE_26_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_joint" type="fixed">
+    <origin xyz="10.270841 0.000001 0.300005" rpy="-3.141586 -3.141592 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_link" />
+  </joint>
+  <link name="TILE_27_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_0_joint" type="fixed">
+    <origin xyz="10.601050 0.571942 0.400009" rpy="1.570803 -3.141592 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_0_link" />
+  </joint>
+  <link name="TILE_27_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_1_joint" type="fixed">
+    <origin xyz="9.940630 0.571941 0.400007" rpy="-1.570794 -0.000006 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_1_link" />
+  </joint>
+  <link name="TILE_27_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_2_joint" type="fixed">
+    <origin xyz="9.610420 -0.000001 0.400002" rpy="-1.570800 -0.000005 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_2_link" />
+  </joint>
+  <link name="TILE_27_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_3_joint" type="fixed">
+    <origin xyz="9.940632 -0.571941 0.400001" rpy="-1.570803 0.000000 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_3_link" />
+  </joint>
+  <link name="TILE_27_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_4_joint" type="fixed">
+    <origin xyz="10.601052 -0.571940 0.400003" rpy="1.570794 3.141587 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_4_link" />
+  </joint>
+  <link name="TILE_27_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_27_SI_5_joint" type="fixed">
+    <origin xyz="10.931262 0.000002 0.400007" rpy="1.570800 3.141587 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_27_SI_5_link" />
+  </joint>
+  <link name="TILE_27_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_joint" type="fixed">
+    <origin xyz="11.591683 0.000003 0.300009" rpy="0.000003 -0.000006 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_link" />
+  </joint>
+  <link name="TILE_28_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_0_joint" type="fixed">
+    <origin xyz="11.261471 0.571943 0.400011" rpy="-1.570794 -0.000006 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_0_link" />
+  </joint>
+  <link name="TILE_28_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_1_joint" type="fixed">
+    <origin xyz="10.931262 0.000002 0.400007" rpy="-1.570800 -0.000005 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_1_link" />
+  </joint>
+  <link name="TILE_28_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_2_joint" type="fixed">
+    <origin xyz="11.261473 -0.571939 0.400005" rpy="-1.570803 0.000000 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_2_link" />
+  </joint>
+  <link name="TILE_28_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_3_joint" type="fixed">
+    <origin xyz="11.921893 -0.571938 0.400008" rpy="1.570794 3.141587 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_3_link" />
+  </joint>
+  <link name="TILE_28_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_4_joint" type="fixed">
+    <origin xyz="12.252103 0.000004 0.400012" rpy="1.570800 3.141587 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_4_link" />
+  </joint>
+  <link name="TILE_28_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_28_SI_5_joint" type="fixed">
+    <origin xyz="11.921892 0.571944 0.400014" rpy="1.570803 -3.141592 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_28_SI_5_link" />
+  </joint>
+  <link name="TILE_28_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_joint" type="fixed">
+    <origin xyz="12.252101 1.143886 0.300018" rpy="-0.000004 -0.000005 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_link" />
+  </joint>
+  <link name="TILE_29_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_0_joint" type="fixed">
+    <origin xyz="11.591680 1.143885 0.400016" rpy="-1.570800 -0.000005 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_0_link" />
+  </joint>
+  <link name="TILE_29_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_1_joint" type="fixed">
+    <origin xyz="11.921892 0.571944 0.400014" rpy="-1.570803 0.000000 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_1_link" />
+  </joint>
+  <link name="TILE_29_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_2_joint" type="fixed">
+    <origin xyz="12.582312 0.571945 0.400016" rpy="1.570794 3.141587 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_2_link" />
+  </joint>
+  <link name="TILE_29_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_3_joint" type="fixed">
+    <origin xyz="12.912522 1.143887 0.400020" rpy="1.570800 3.141587 1.570798" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_3_link" />
+  </joint>
+  <link name="TILE_29_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_4_joint" type="fixed">
+    <origin xyz="12.582310 1.715827 0.400022" rpy="1.570803 -3.141592 2.617995" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_4_link" />
+  </joint>
+  <link name="TILE_29_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_29_SI_5_joint" type="fixed">
+    <origin xyz="11.921890 1.715826 0.400020" rpy="-1.570794 -0.000006 0.523600" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_29_SI_5_link" />
+  </joint>
+  <link name="TILE_29_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_joint" type="fixed">
+    <origin xyz="3.750000 -1.143882 -0.660421" rpy="1.570796 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_link" />
+  </joint>
+  <link name="TILE_30_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 -1.715823 -0.330210" rpy="0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_0_link" />
+  </joint>
+  <link name="TILE_30_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 -1.715823 -0.990631" rpy="-0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_1_link" />
+  </joint>
+  <link name="TILE_30_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 -1.143882 -1.320841" rpy="-0.000000 3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_2_link" />
+  </joint>
+  <link name="TILE_30_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 -0.990631" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_3_link" />
+  </joint>
+  <link name="TILE_30_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 -0.330210" rpy="-0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_4_link" />
+  </joint>
+  <link name="TILE_30_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_30_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 -1.143882 -0.000000" rpy="-0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_30_SI_5_link" />
+  </joint>
+  <link name="TILE_30_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_joint" type="fixed">
+    <origin xyz="3.750000 -1.143882 0.660421" rpy="1.570796 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_link" />
+  </joint>
+  <link name="TILE_31_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 -1.715823 0.330210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_0_link" />
+  </joint>
+  <link name="TILE_31_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 -1.143882 -0.000000" rpy="0.000000 3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_1_link" />
+  </joint>
+  <link name="TILE_31_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 0.330210" rpy="0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_2_link" />
+  </joint>
+  <link name="TILE_31_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 0.990631" rpy="-0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_3_link" />
+  </joint>
+  <link name="TILE_31_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 -1.143882 1.320841" rpy="-0.000000 0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_4_link" />
+  </joint>
+  <link name="TILE_31_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_31_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 -1.715823 0.990631" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_31_SI_5_link" />
+  </joint>
+  <link name="TILE_31_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_joint" type="fixed">
+    <origin xyz="3.750000 -0.000000 1.320841" rpy="1.570796 -3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_link" />
+  </joint>
+  <link name="TILE_32_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 0.660421" rpy="0.000000 -3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_0_link" />
+  </joint>
+  <link name="TILE_32_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 0.990631" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_1_link" />
+  </joint>
+  <link name="TILE_32_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 1.651052" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_2_link" />
+  </joint>
+  <link name="TILE_32_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 1.981262" rpy="-0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_3_link" />
+  </joint>
+  <link name="TILE_32_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 1.651052" rpy="0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_4_link" />
+  </joint>
+  <link name="TILE_32_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_32_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 0.990631" rpy="-0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_32_SI_5_link" />
+  </joint>
+  <link name="TILE_32_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_joint" type="fixed">
+    <origin xyz="3.750000 1.143882 0.660421" rpy="1.570796 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_link" />
+  </joint>
+  <link name="TILE_33_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 0.330210" rpy="-0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_0_link" />
+  </joint>
+  <link name="TILE_33_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 1.143882 -0.000000" rpy="-0.000000 3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_1_link" />
+  </joint>
+  <link name="TILE_33_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 1.715823 0.330210" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_2_link" />
+  </joint>
+  <link name="TILE_33_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 1.715823 0.990631" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_3_link" />
+  </joint>
+  <link name="TILE_33_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 1.143882 1.320841" rpy="-0.000000 0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_4_link" />
+  </joint>
+  <link name="TILE_33_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_33_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 0.990631" rpy="0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_33_SI_5_link" />
+  </joint>
+  <link name="TILE_33_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_joint" type="fixed">
+    <origin xyz="3.750000 1.143882 -0.660421" rpy="1.570796 -3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_link" />
+  </joint>
+  <link name="TILE_34_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 1.143882 -1.320841" rpy="-0.000000 -3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_0_link" />
+  </joint>
+  <link name="TILE_34_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 1.715823 -0.990631" rpy="-0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_1_link" />
+  </joint>
+  <link name="TILE_34_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 1.715823 -0.330210" rpy="0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_2_link" />
+  </joint>
+  <link name="TILE_34_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 1.143882 0.000000" rpy="0.000000 -0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_3_link" />
+  </joint>
+  <link name="TILE_34_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 -0.330210" rpy="0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_4_link" />
+  </joint>
+  <link name="TILE_34_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_34_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 -0.990631" rpy="-0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_34_SI_5_link" />
+  </joint>
+  <link name="TILE_34_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_joint" type="fixed">
+    <origin xyz="3.750000 0.000000 -0.250000" rpy="1.570796 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_link" />
+  </joint>
+  <link name="TILE_35_link">
+    <inertial>
+      <origin xyz="0.000000 0.000000 0.000000" />
+      <inertia ixx="1.000000" ixy="0.000000" ixz="0.000000" iyy="1.000000" iyz="0.000000" izz="1.000000" />
+      <mass value="20.800000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_0_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 -0.580210" rpy="0.000000 -2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_0_link" />
+  </joint>
+  <link name="TILE_35_SI_0_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_1_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 -0.910421" rpy="0.000000 3.141593 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_1_link" />
+  </joint>
+  <link name="TILE_35_SI_1_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_2_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 -0.580210" rpy="0.000000 2.094395 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_2_link" />
+  </joint>
+  <link name="TILE_35_SI_2_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_3_joint" type="fixed">
+    <origin xyz="3.850000 0.571941 0.080210" rpy="-0.000000 1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_3_link" />
+  </joint>
+  <link name="TILE_35_SI_3_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_4_joint" type="fixed">
+    <origin xyz="3.850000 0.000000 0.410421" rpy="-0.000000 0.000000 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_4_link" />
+  </joint>
+  <link name="TILE_35_SI_4_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="TILE_35_SI_5_joint" type="fixed">
+    <origin xyz="3.850000 -0.571941 0.080210" rpy="-0.000000 -1.047198 1.570796" />
+    <parent link="SPACECRAFT_link" />
+    <child link="TILE_35_SI_5_link" />
+  </joint>
+  <link name="TILE_35_SI_5_link">
+    <inertial>
+      <origin xyz="0.000000 -0.000000 0.020221" />
+      <inertia ixx="0.001527" ixy="-0.000000" ixz="-0.000000" iyy="0.001527" iyz="0.000000" izz="0.001740" />
+      <mass value="1.200000" />
+    </inertial>
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CAMERA_ARM_joint" type="fixed">
+    <origin xyz="3.850001 4.091930 3.334858" rpy="1.570616 1.572388 3.141412" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CAMERA_ARM_link" />
+  </joint>
+  <link name="CAMERA_ARM_link">
+    <stiffness value="rigid" />
+  </link>
+  <joint name="CAMERA_ARM_SENSOR_joint" type="fixed">
+    <origin xyz="3.850001 4.241930 3.334858" rpy="-2.356327 -1.573048 0.785532" />
+    <parent link="SPACECRAFT_link" />
+    <child link="CAMERA_ARM_SENSOR_link" />
+  </joint>
+  <link name="CAMERA_ARM_SENSOR_link">
+    <stiffness value="rigid" />
+  </link>
+</robot>

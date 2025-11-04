@@ -1,0 +1,20 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="5,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T4U3">DCM</span> = Euler_DCM(<span class="var type1" id="S3T3U6">e</span>,<span class="var type1" id="S4T5U7">alpha</span>) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="5,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%Provides the Direction Cosine Matrix (DCM) from a Euler axis e=[e1,e2,e3]</span></span></span>
+<span class="srcline"><span class="lineno"><a href="5,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%and angle alpha.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="5,4" id="srcline4"> 4</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="5,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%Create quaternion</span></span></span>
+<span class="srcline"><span class="lineno"><a href="5,6" id="srcline6"> 6</a></span><span class="line"><span class="mxinfo " id="T48:U4"><span class="var type1" id="S5T48U10">q</span>=<span class="mxinfo " id="T48:U6">[ <span class="mxinfo " id="T3:U7"><span class="var type1" id="S3T3U14">e</span>*<span class="mxinfo " id="T5:U9">sin(<span class="mxinfo " id="T5:U10"><span class="var type1" id="S4T5U18">alpha</span>/<span class="mxinfo " id="T5:U12">2</span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="5,7" id="srcline7"> 7</a></span><span class="line">    <span class="mxinfo " id="T5:U13">cos(<span class="mxinfo " id="T5:U14"><span class="var type1" id="S4T5U24">alpha</span>/<span class="mxinfo " id="T5:U16">2</span></span>)</span>]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="5,8" id="srcline8"> 8</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="5,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%Convert quaternion to DCM</span></span></span>
+<span class="srcline"><span class="lineno"><a href="5,10" id="srcline10">10</a></span><span class="line"><span class="mxinfo " id="T4:U17"><span class="var type1" id="S2T4U28">DCM</span> = <span class="mxinfo " id="T4:U19"><span class="fcn" id="F23N26:B30">quat_DCM</span>(<span class="var type1" id="S5T48U31">q</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="5,11" id="srcline11">11</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="5,12" id="srcline12">12</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

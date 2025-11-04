@@ -1,0 +1,76 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="122,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> [<span class="var type1" id="S2T106U3">N</span>] = NOC(<span class="var type1" id="S3T3U6">r0</span>,<span class="var type1" id="S4T99U7">rL</span>,<span class="var type1" id="S5T27U8">P0</span>,<span class="var type1" id="S6T33U9">pm</span>,<span class="var type2" id="S7T94V7U10">robot</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="122,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% Computes the Natural Orthogonal Complement (NOC) matrix (generalized Jacobian).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% [N] = NOC(r0,rL,P0,pm,robot)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% :parameters: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   * r0 -- Position of the base-link, projected in the inertial CCS -- [3x1].</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   * rL -- Positions of the links, projected in the inertial CCS -- as a [3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   * P0 -- Base-link twist-propagation "vector" -- as a [6x6] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,10" id="srcline10">10</a></span><span class="line"><span class="comment">%   * pm -- Manipulator twist-propagation "vector" -- as a [6xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,11" id="srcline11">11</a></span><span class="line"><span class="comment">%   * robot -- Robot model (see :doc:`/Tutorial_Robot`).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,12" id="srcline12">12</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,13" id="srcline13">13</a></span><span class="line"><span class="comment">% :return: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,14" id="srcline14">14</a></span><span class="line"><span class="comment">%   * N -- Natural Orthogonal Complement (NOC) matrix -- a [(6+6*n)x(6+n_q)] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,15" id="srcline15">15</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,16" id="srcline16">16</a></span><span class="line"><span class="comment">% Examples:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,17" id="srcline17">17</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,18" id="srcline18">18</a></span><span class="line"><span class="comment">%   To compute the velocities of all links:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,19" id="srcline19">19</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,20" id="srcline20">20</a></span><span class="line"><span class="comment">% .. code-block:: matlab</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,21" id="srcline21">21</a></span><span class="line"><span class="comment">%	</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,22" id="srcline22">22</a></span><span class="line"><span class="comment">%   %Compute NOC.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,23" id="srcline23">23</a></span><span class="line"><span class="comment">%   [N] = NOC(r0,rL,P0,pm,robot)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,24" id="srcline24">24</a></span><span class="line"><span class="comment">%   %Generalized twist (concatenation of the twist of all links).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,25" id="srcline25">25</a></span><span class="line"><span class="comment">%   t=N*[u0;um];</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,26" id="srcline26">26</a></span><span class="line"><span class="comment">%   %Twist of the base-link</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,27" id="srcline27">27</a></span><span class="line"><span class="comment">%   t0=t(1:6,1);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,28" id="srcline28">28</a></span><span class="line"><span class="comment">%   %Twist of the ith link</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,29" id="srcline29">29</a></span><span class="line"><span class="comment">%   i=2;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,30" id="srcline30">30</a></span><span class="line"><span class="comment">%   ti=t(6*i:6+6*i,1);</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,31" id="srcline31">31</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,32" id="srcline32">32</a></span><span class="line"><span class="comment">% See also: :func:`src.kinematics_dynamics.Jacob` and :func:`src.kinematics_dynamics.NOCdot`. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,33" id="srcline33">33</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,34" id="srcline34">34</a></span><span class="line"><span class="comment"><span class="comment">%{  </span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,35" id="srcline35">35</a></span><span class="line"><span class="comment">    LICENSE</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,36" id="srcline36">36</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,37" id="srcline37">37</a></span><span class="line"><span class="comment">    This program is free software: you can redistribute it and/or modify</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,38" id="srcline38">38</a></span><span class="line"><span class="comment">    it under the terms of the GNU Lesser General Public License as published by</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,39" id="srcline39">39</a></span><span class="line"><span class="comment">    the Free Software Foundation, either version 3 of the License, or</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,40" id="srcline40">40</a></span><span class="line"><span class="comment">    (at your option) any later version.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,41" id="srcline41">41</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,42" id="srcline42">42</a></span><span class="line"><span class="comment">    This program is distributed in the hope that it will be useful,</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,43" id="srcline43">43</a></span><span class="line"><span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,44" id="srcline44">44</a></span><span class="line"><span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,45" id="srcline45">45</a></span><span class="line"><span class="comment">    GNU Lesser General Public License for more details.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,46" id="srcline46">46</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,47" id="srcline47">47</a></span><span class="line"><span class="comment">    You should have received a copy of the GNU Lesser General Public License</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,48" id="srcline48">48</a></span><span class="line"><span class="comment">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,49" id="srcline49">49</a></span><span class="line"><span class="comment"><span class="comment">%}</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,50" id="srcline50">50</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,51" id="srcline51">51</a></span><span class="line"><span class="comment">%=== Code ===%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,52" id="srcline52">52</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,53" id="srcline53">53</a></span><span class="line"><span class="comment">%Pre-allocate NOC</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,54" id="srcline54">54</a></span><span class="line"><span class="mxinfo " id="T106:U7"><span class="var type1" id="S2T106U13">N</span>=<span class="mxinfo " id="T106:U9">zeros(<span class="mxinfo " id="T5:U10">6+6*<span class="var type1" id="S7T94U21">robot</span>.n_links_joints</span>,<span class="mxinfo " id="T5:U12">6+<span class="var type1" id="S7T94U26">robot</span>.n_q</span>,<span class="string">'like'</span>,<span class="var type1" id="S3T3U29">r0</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="122,55" id="srcline55">55</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,56" id="srcline56">56</a></span><span class="line"><span class="comment">%Base-link contribution</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,57" id="srcline57">57</a></span><span class="line"><span class="mxinfo " id="T33:U15"><span class="mxinfo " id="T33:U16"><span class="var type1" id="S2T106U33">N</span>(<span class="mxinfo " id="T62:U18"><span class="mxinfo " id="T5:U19">1</span>:<span class="mxinfo " id="T5:U20">6</span></span>,<span class="mxinfo " id="T88:U21"><span class="mxinfo " id="T5:U22">1</span>:<span class="mxinfo " id="T5:U23">6+<span class="var type1" id="S7T94U42">robot</span>.n_q</span></span>)</span>=<span class="mxinfo " id="T33:U25">[<span class="var type1" id="S5T27U46">P0</span>,<span class="mxinfo " id="T29:U27">zeros(<span class="mxinfo " id="T5:U28">6</span>,<span class="mxinfo " id="T5:U29"><span class="var type1" id="S7T94U51">robot</span>.n_q</span>)</span>]</span></span>; </span></span>
+<span class="srcline"><span class="lineno"><a href="122,58" id="srcline58">58</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,59" id="srcline59">59</a></span><span class="line"><span class="comment">%Manipulator contribution</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,60" id="srcline60">60</a></span><span class="line"><span class="keyword">for</span> <span class="var type1" id="S9T5U55">i</span>=<span class="mxinfo " id="T22:U32"><span class="mxinfo " id="T5:U33">1</span>:<span class="var type1" id="S7T94U59">robot</span>.n_links_joints</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,61" id="srcline61">61</a></span><span class="line">    <span class="comment">%Jacobian</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,62" id="srcline62">62</a></span><span class="line">    [<span class="var type1" id="S10T27U64">J0i</span>, <span class="var type1" id="S11T29U65">Jmi</span>]=<span class="fcn" id="F348N12:B67">Jacob</span>(<span class="mxinfo " id="T3:U37"><span class="var type1" id="S4T99U69">rL</span>(<span class="mxinfo " id="T36:U39">1:3</span>,<span class="var type1" id="S9T5U73">i</span>)</span>,<span class="var type1" id="S3T3U74">r0</span>,<span class="var type1" id="S4T99U75">rL</span>,<span class="var type1" id="S5T27U76">P0</span>,<span class="var type1" id="S6T33U77">pm</span>,<span class="var type1" id="S9T5U78">i</span>,<span class="var type1" id="S7T94U79">robot</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="122,63" id="srcline63">63</a></span><span class="line">    <span class="comment">%Append Jacobian to the NOC</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,64" id="srcline64">64</a></span><span class="line">    <span class="mxinfo " id="T110:U47"><span class="mxinfo " id="T110:U48"><span class="var type1" id="S2T106U83">N</span>(<span class="mxinfo " id="T64:U50"><span class="mxinfo " id="T5:U51"><span class="mxinfo " id="T5:U52"><span class="mxinfo " id="T5:U53">6</span>+<span class="mxinfo " id="T5:U54"><span class="mxinfo " id="T5:U55">6</span>*<span class="var type1" id="S9T5U90">i</span></span></span>-<span class="mxinfo " id="T5:U57">5</span></span>:<span class="mxinfo " id="T5:U58"><span class="mxinfo " id="T5:U59">6</span>+<span class="mxinfo " id="T5:U60"><span class="mxinfo " id="T5:U61">6</span>*<span class="var type1" id="S9T5U96">i</span></span></span></span>,<span class="mxinfo " id="T103:U63">1:6+<span class="var type1" id="S7T94U102">robot</span>.n_q</span>)</span>=<span class="mxinfo " id="T33:U65">[<span class="var type1" id="S10T27U106">J0i</span>,<span class="var type1" id="S11T29U107">Jmi</span>]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="122,65" id="srcline65">65</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="122,66" id="srcline66">66</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,67" id="srcline67">67</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="122,68" id="srcline68">68</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

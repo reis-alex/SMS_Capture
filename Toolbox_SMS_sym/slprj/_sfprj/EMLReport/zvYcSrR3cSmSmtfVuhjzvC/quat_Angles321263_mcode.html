@@ -1,0 +1,18 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="92,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T3U3">Angles</span> = quat_Angles321(<span class="var type1" id="S3T48U6">q</span>) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="92,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%Convert a quaternion to Euler angles (321 sequence), x-phi, y-theta, z-psi.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="92,3" id="srcline3"> 3</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="92,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%Quaternion to DCM</span></span></span>
+<span class="srcline"><span class="lineno"><a href="92,5" id="srcline5"> 5</a></span><span class="line"><span class="mxinfo " id="T4:U3"><span class="var type1" id="S4T4U9">DCM</span> = <span class="mxinfo " id="T4:U5"><span class="fcn" id="F264N26:B11">quat_DCM</span>(<span class="var type1" id="S3T48U12">q</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="92,6" id="srcline6"> 6</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="92,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%DCM to Angles (using 321 sequence)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="92,8" id="srcline8"> 8</a></span><span class="line"><span class="mxinfo " id="T3:U7"><span class="var type1" id="S2T3U15">Angles</span> = <span class="mxinfo " id="T3:U9"><span class="fcn" id="F291N4:B17">DCM_Angles321</span>(<span class="var type1" id="S4T4U18">DCM</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="92,9" id="srcline9"> 9</a></span><span class="line">    </span></span>
+<span class="srcline"><span class="lineno"><a href="92,10" id="srcline10">10</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" ?>
+
+<robot name="pulsar">
+
+  <!-- Colors -->
+  <material name="Grey">
+      <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="Orange">
+      <color rgba="1.0 0.4 0.3 1.0"/>
+  </material>
+  <material name="Blue">
+  <color rgba="0.5 0.7 1.0 1.0"/>
+  </material>
+  <material name="Red">
+      <color rgba="1 0 0 1.0"/>
+  </material>
+
+<!-- ********************************************************** -->
+
+
+  <!--Spacecraft
+  <link name="Spacecraft">
+      <inertial>
+      <origin rpy="0 0 0" xyz="0.9 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      </inertial>
+      <visual>
+      <origin xyz="1 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+          <cylinder length="2" radius="1.6"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+    <stiffness name="rigid"/>
+  </link> -->
+
+
+    
+<!-- ********************************************************** -->
+<!-- TARGET -->
+
+  <!-- Joint to target 
+<joint name="target_arm1" type="fixed">
+    <parent link="Spacecraft"/>
+    <child link="Target"/>
+    <origin xyz="-0.2 0 0.45" rpy="-1.8875 0 0" />
+    <axis xyz="1 0 0"/>
+</joint> -->
+
+  <!--Target-->
+  <link name="Target">
+      <inertial>
+      <origin xyz="0.3 0 0"/>
+      <mass value="620"/>
+      <inertia ixx="1115" ixy="0" ixz="0" iyy="734" iyz="0" izz="734"/>
+      </inertial>
+      <visual>
+      <origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+          <cylinder length="1.5/3" radius="1.6/3"/>
+      </geometry>
+      <material name="Blue"/>
+      </visual>
+      <stiffness name="rigid"/>
+  </link>
+
+
+  <!-- Joint to target's Solar Panel -->
+    <joint name="Target_Left_Panel" type="fixed">
+        <parent link="Target"/>
+        <child link="Target_Panel"/>
+        <origin xyz="0 0 0.92" rpy="0 0 3.1416"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <!-- Target's Solar Panel-->
+    <link name="Target_Panel">
+        <inertial>
+        <origin rpy="0 0 0" xyz="0.001 0.001 1.3"/>
+        <mass value="21"/>
+        <inertia ixx="710" ixy="0" ixz="0" iyy="710" iyz="0" izz="6"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size="0.0066 0.66 1.8"/>
+        </geometry>
+        <material name="Blue"/>
+        </visual>
+        <stiffness name="rigid">
+        </stiffness>  
+    </link>
+
+</robot>

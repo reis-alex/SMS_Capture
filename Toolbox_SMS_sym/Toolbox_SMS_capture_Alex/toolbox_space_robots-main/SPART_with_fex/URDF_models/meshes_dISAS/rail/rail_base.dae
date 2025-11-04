@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2020-03-05T10:21:29</created>
+    <modified>2020-03-05T10:21:29</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Rail_Base-mesh" name="Rail Base">
+      <mesh>
+        <source id="Rail_Base-mesh-positions">
+          <float_array id="Rail_Base-mesh-positions-array" count="96">0 0.02499997 0.04999995 0 0.02499997 0.1 0 0.1 0.1 0 0.1 0.04999995 0 0.02499997 -0.1 0 0.02499997 -0.04999995 0 0.1 -0.04999995 0 0.1 -0.1 0 -0.1 -0.1 0 -0.1 -0.04999995 0 -0.02499997 -0.04999995 0 -0.02499997 -0.1 0 -0.1 0.04999995 0 -0.1 0.1 0 -0.02499997 0.1 0 -0.02499997 0.04999995 5.3 0.02499997 0.04999995 5.3 0.1 0.04999995 5.3 0.1 0.1 5.3 0.02499997 0.1 5.3 0.02499997 -0.1 5.3 0.1 -0.1 5.3 0.1 -0.04999995 5.3 0.02499997 -0.04999995 5.3 -0.1 -0.1 5.3 -0.02499997 -0.1 5.3 -0.02499997 -0.04999995 5.3 -0.1 -0.04999995 5.3 -0.1 0.04999995 5.3 -0.02499997 0.04999995 5.3 -0.02499997 0.1 5.3 -0.1 0.1</float_array>
+          <technique_common>
+            <accessor source="#Rail_Base-mesh-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rail_Base-mesh-normals">
+          <float_array id="Rail_Base-mesh-normals-array" count="18">1 0 0 0 1 0 0 -1 0 0 0 -1 -1 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Rail_Base-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Rail_Base-mesh-vertices">
+          <input semantic="POSITION" source="#Rail_Base-mesh-positions"/>
+        </vertices>
+        <triangles count="60">
+          <input semantic="VERTEX" source="#Rail_Base-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Rail_Base-mesh-normals" offset="1"/>
+          <p>30 0 16 0 19 0 23 1 0 1 16 1 27 2 8 2 24 2 25 3 4 3 20 3 11 4 9 4 10 4 22 5 5 5 23 5 16 3 3 3 17 3 20 3 7 3 21 3 24 3 11 3 25 3 28 3 15 3 29 3 27 0 25 0 26 0 23 0 21 0 22 0 0 4 14 4 1 4 29 2 10 2 26 2 29 0 23 0 16 0 21 1 6 1 22 1 31 2 12 2 28 2 19 5 14 5 30 5 19 0 17 0 18 0 4 4 10 4 5 4 26 5 9 5 27 5 17 1 2 1 18 1 7 4 5 4 6 4 5 4 15 4 0 4 30 5 13 5 31 5 18 5 1 5 19 5 15 4 13 4 14 4 31 0 29 0 30 0 3 4 1 4 2 4 26 0 20 0 23 0 30 0 29 0 16 0 23 1 5 1 0 1 27 2 9 2 8 2 25 3 11 3 4 3 11 4 8 4 9 4 22 5 6 5 5 5 16 3 0 3 3 3 20 3 4 3 7 3 24 3 8 3 11 3 28 3 12 3 15 3 27 0 24 0 25 0 23 0 20 0 21 0 0 4 15 4 14 4 29 2 15 2 10 2 29 0 26 0 23 0 21 1 7 1 6 1 31 2 13 2 12 2 19 5 1 5 14 5 19 0 16 0 17 0 4 4 11 4 10 4 26 5 10 5 9 5 17 1 3 1 2 1 7 4 4 4 5 4 5 4 10 4 15 4 30 5 14 5 13 5 18 5 2 5 1 5 15 4 12 4 13 4 31 0 28 0 29 0 3 4 0 4 1 4 26 0 25 0 20 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Rail_Base" name="Rail_Base" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Rail_Base-mesh" name="Rail_Base"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

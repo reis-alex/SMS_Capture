@@ -1,0 +1,509 @@
+<?xml version="1.0" ?>
+
+<robot name="pulsar">
+
+  <!-- Colors -->
+  <material name="Grey">
+      <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="Orange">
+      <color rgba="1.0 0.4 0.3 1.0"/>
+  </material>
+  <material name="Blue">
+  <color rgba="0.5 0.7 1.0 1.0"/>
+  </material>
+  <material name="Red">
+      <color rgba="1 0 0 1.0"/>
+  </material>
+
+<!-- ********************************************************** -->
+
+
+  <!--Spacecraft-->
+  <link name="Spacecraft">
+      <inertial>
+      <origin rpy="0 0 0" xyz="0.9 0 0"/>
+      <mass value="1960"/>
+      <inertia ixx="3345" ixy="0" ixz="0" iyy="2202" iyz="0" izz="2202"/>
+      </inertial>
+      <visual>
+      <origin xyz="1 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+          <cylinder length="2" radius="1.6"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+    <stiffness name="rigid"/>
+  </link>
+
+  <!-- Joint to Payload -->
+<joint name="Spacecraft_Payload" type="fixed">
+    <parent link="Spacecraft"/>
+    <child link="Payload"/>
+    <origin xyz="3.75 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0"/>
+</joint>
+
+  <!--Payload-->
+  <link name="Payload">
+      <inertial>
+      <origin xyz="0.55 0 0"/>
+      <mass value="1440"/>
+      <inertia ixx="2458" ixy="0" ixz="0" iyy="1499" iyz="0" izz="1499"/>
+      </inertial>
+      <visual>
+      <origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+          <cylinder length="1.5" radius="1.6"/>
+      </geometry>
+      <material name="Blue"/>
+      </visual>
+      <stiffness name="rigid"/>
+  </link>
+
+
+<!-- ********************************************************** -->
+
+      <!-- Joint to Left Solar Panel -->
+    <joint name="Spacecraft_Left_Panel" type="fixed">
+        <parent link="Spacecraft"/>
+        <child link="Left_Panel"/>
+        <origin xyz="1 0 -1.6" rpy="3.1416 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <!-- Left Solar Panel-->
+    <link name="Left_Panel">
+        <inertial>
+        <origin rpy="0 0 0" xyz="0.001 0.001 3.8447"/>
+        <mass value="61"/>
+        <inertia ixx="17" ixy="0" ixz="0" iyy="1250" iyz="0" izz="1233"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 2.75"/>
+        <geometry>
+            <box size="0.25 2 5.5"/>
+        </geometry>
+        <material name="Blue"/>
+        </visual>
+        <stiffness name="flexible">
+          <mode_number value="1"/>
+          <mode_1 pulse="0.16*2*pi" L="-6.4 0 0 0 -35 0" damp="0.005"/>
+          <mode_2 pulse="0.70*2*pi" L="0 -6.7 0 35.4 0 0" damp="0.005"/>
+          <mode_3 pulse="1.08*2*pi" L="-0.1 -0.1 0 0.3 0 3.8" damp="0.005"/>
+          <mode_4 pulse="1.21*2*pi" L="-3.2 0 0 0 -3 -0.01" damp="0.005"/>
+          <mode_5 pulse="3.05*2*pi" L="2.3 0 -0.3 0 1.3 0" damp="0.005"/>
+        </stiffness>
+    </link>
+
+    <!-- Joint to Right Solar Panel -->
+    <joint name="Spacecraft_Right_Panel" type="fixed">
+        <parent link="Spacecraft"/>
+        <child link="Right_Panel"/>
+        <origin xyz="1 0 1.6" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <!-- Right Solar Panel-->
+    <link name="Right_Panel">
+      <inertial>
+      <origin rpy="0 0 0" xyz="0.001 0.001 3.8447"/>
+      <mass value="61"/>
+      <inertia ixx="17" ixy="0" ixz="0" iyy="1250" iyz="0" izz="1233"/>
+      </inertial>
+      <visual>
+      <origin rpy="0 0 0" xyz="0 0 2.75"/>
+      <geometry>
+          <box size="0.25 2 5.5"/>
+      </geometry>
+      <material name="Blue"/>
+      </visual>
+      <stiffness name="flexible">
+        <mode_number value="1"/>
+        <mode_1 pulse="0.16*2*pi" L="-6.4 0 0 0 -35 0" damp="0.005"/>
+        <mode_2 pulse="0.70*2*pi" L="0 -6.7 0 35.4 0 0" damp="0.005"/>
+        <mode_3 pulse="1.08*2*pi" L="-0.1 -0.1 0 0.3 0 3.8" damp="0.005"/>
+        <mode_4 pulse="1.21*2*pi" L="-3.2 0 0 0 -3 -0.01" damp="0.005"/>
+        <mode_5 pulse="3.05*2*pi" L="2.3 0 -0.3 0 1.3 0" damp="0.005"/>
+      </stiffness>
+    </link>
+
+  
+  <!-- ********************************************************** -->
+  <!--joint Spacecraft to Reaction Wheel 1 -->
+    <joint name="Spacecraft_to_RW1" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW1"/>
+        <origin xyz="1 0  0" rpy="0 0 0" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint>
+
+    <!-- Reaction Wheel 1 -->
+    <link name="RW1" >
+      <inertial>
+          <origin rpy ="0 0 0" xyz="0 0 0.0" />
+          <mass value="4"/>
+          <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+      </inertial>
+      <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <cylinder length="0.16" radius="0.31" />
+          </geometry>
+          <material name="Grey"/>
+      </visual>
+    <stiffness name="rigid"/>
+    </link>
+
+    <!--joint Spacecraft to Reaction Wheel 2 -->
+    <joint name="Spacecraft_to_RW2" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW2"/>
+        <origin xyz="1 0 0" rpy="pi/2 0 0" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint>
+
+    <!-- Reaction Wheel 2 -->
+    <link name="RW2" >
+      <inertial>
+          <origin rpy ="0 0 0" xyz="0 0 0.0" />
+          <mass value="4"/>
+          <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+      </inertial>
+      <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <cylinder length="0.16" radius="0.31" />
+          </geometry>
+          <material name="Grey"/>
+      </visual>
+    <stiffness name="rigid"/>
+    </link>
+
+    <!--joint Spacecraft to Reaction Wheel 3-->
+    <joint name="Spacecraft_to_RW3" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW3"/>
+        <origin xyz="1 0 0" rpy="pi pi/2 pi" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint>
+
+    <!-- Reaction Wheel 3 -->
+    <link name="RW3" >
+    <inertial>
+        <origin rpy ="0 0 0" xyz="0 0 0.0" />
+        <mass value="4"/>
+        <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+    </inertial>
+    <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.16" radius="0.31" />
+        </geometry>
+        <material name="Grey"/>
+    </visual>
+    <stiffness name="rigid"/>
+    </link>
+
+    <!--joint Spacecraft to Reaction Wheel 4
+    <joint name="Spacecraft_to_RW4" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW4"/>
+        <origin xyz="1 0 0" rpy="pi 0 0" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint>  -->
+
+    <!-- Reaction Wheel 4 
+    <link name="RW4" >
+      <inertial>
+          <origin rpy ="0 0 0" xyz="0 0 0.0" />
+          <mass value="4"/>
+          <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+      </inertial>
+      <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <cylinder length="0.16" radius="0.31" />
+          </geometry>
+          <material name="Grey"/>
+      </visual>
+    <stiffness name="rigid"/>
+    </link>  -->
+
+
+ <!--joint Spacecraft to Reaction Wheel 5
+    <joint name="Spacecraft_to_RW5" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW5"/>
+        <origin xyz="1 0 0" rpy=" -pi/2 0 0" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint> -->
+
+    <!-- Reaction Wheel 5 
+    <link name="RW5" >
+      <inertial>
+          <origin rpy ="0 0 0" xyz="0 0 0.0" />
+          <mass value="4"/>
+          <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+      </inertial>
+      <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <cylinder length="0.16" radius="0.31" />
+          </geometry>
+          <material name="Grey"/>
+      </visual>
+    <stiffness name="rigid"/>
+    </link> -->
+
+<!--joint Spacecraft to Reaction Wheel 6
+    <joint name="Spacecraft_to_RW6" type="revolute">
+        <parent link="Spacecraft" />
+        <child link="RW6"/>
+        <origin xyz="1 0 0" rpy="pi -pi/2 pi" />
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    </joint> -->
+
+    <!-- Reaction Wheel 6 
+    <link name="RW6" >
+      <inertial>
+          <origin rpy ="0 0 0" xyz="0 0 0.0" />
+          <mass value="4"/>
+          <inertia ixx="0.065" ixy="0" ixz="0" iyy="0.065" iyz="0" izz="0.1322"/>
+      </inertial>
+      <visual>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <cylinder length="0.16" radius="0.31" />
+          </geometry>
+          <material name="Grey"/>
+      </visual>
+    <stiffness name="rigid"/>
+    </link> -->
+
+ <!-- ********************************************************** -->
+
+<!-- Vispa Arm  1-->
+
+
+<link name="Link_0">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link0-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.627"/>
+      <inertia ixx="0.00281845585208" ixy="0" ixz="0" iyy="0.00281883333333" iyz="0" izz="0.00379978918542"/>
+      <origin xyz="0 0 0.0"/>
+    </inertial>
+  </link>
+
+
+
+  <link name="Link_1">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link1-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="2.328"/>
+      <inertia ixx="0.012" ixy="0" ixz="0" iyy="0.007" iyz="0.003" izz="0.008"/>
+      <origin xyz="0 -0.029 -0.043"/>
+    </inertial>
+  </link>
+
+  <link name="Link_2">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link2-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="3.995"/>
+      <inertia ixx="0.010 " ixy="0" ixz="0" iyy="0.578" iyz="0" izz="0.574"/>
+      <origin xyz="0.4 0 0.142"/>
+    </inertial>
+  </link>
+
+  <link name="Link_3">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link3-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="2.328"/>
+      <inertia ixx="0.012" ixy="0" ixz="0" iyy="0.008" iyz="0.003" izz="0.007"/>
+      <origin xyz="0 0.043 0.029"/>
+    </inertial>
+  </link>
+
+  <link name="Link_4">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link4-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="3.157"/>
+      <inertia ixx="0.199" ixy="0" ixz="0" iyy="0.193" iyz="0.01" izz="0.01"/>
+      <origin xyz="0 -0.043 -0.210"/>
+    </inertial>
+  </link>
+
+  <link name="Link_5">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link5-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="2.695"/>
+      <inertia ixx="0.029" ixy="0" ixz="0" iyy="0.006" iyz="-0.001" izz="0.027"/>
+      <origin xyz="0 0.125 -0.007"/>
+    </inertial>
+  </link>
+
+  <link name="Link_6">
+    <visual>
+      <geometry>
+        <mesh filename="meshes/Link6-DHReference-PublicRelease.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.924"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.002" iyz="0" izz="0.001"/>
+      <origin xyz="0 0 0.0"/>
+    </inertial>
+  </link>
+
+ <joint name="base_link-link0" type="fixed">
+    <parent link="Spacecraft"/>
+    <child link="Link_0"/>
+    <origin xyz="4.5 0 1.07" rpy="0 pi/2 0"/>
+  <!--  <axis xyz="1 0 0"/>  -->
+    <limit effort="1000.0" lower="0" upper="0" velocity="0"/>
+    <!-- <origin xyz="0 0 0" rpy="0 0 ${2*C_1_DEGREE}"/> -->
+  </joint>
+
+
+  <joint name="Joint_1" type="revolute">
+    <parent link="Link_0"/>
+    <child link="Link_1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0 0 0.18" rpy="0 0 0"/> 
+  </joint>
+
+  <joint name="Joint_2" type="revolute">
+    <parent link="Link_1"/>
+    <child link="Link_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0 0 0" rpy="1.57079632679 -1.57079632679 0"/> 
+  </joint>
+
+  <joint name="Joint_3" type="revolute">
+    <parent link="Link_2"/>
+    <child link="Link_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0.8 0 0" rpy="0 0 -1.57079632679"/> 
+  </joint>
+
+  <joint name="Joint_4" type="revolute">
+    <parent link="Link_3"/>
+    <child link="Link_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0 0.65 0" rpy="-1.57079632679 0 0"/> 
+  </joint>
+
+  <joint name="Joint_5" type="revolute">
+    <parent link="Link_4"/>
+    <child link="Link_5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0 0 0" rpy="1.57079632679 0 0"/> 
+  </joint>
+
+  <joint name="Joint_6" type="revolute">
+    <parent link="Link_5"/>
+    <child link="Link_6"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14149265359" upper="3.14149265359" velocity="0.09395689"/>
+    <origin xyz="0 0.325 0" rpy="-1.57079632679 0 0"/> 
+  </joint>
+
+
+
+
+
+
+    
+<!-- ********************************************************** -->
+<!-- TARGET -->
+
+  <!-- Joint to target -->
+<joint name="target_arm1" type="fixed">
+    <parent link="Link_6"/>
+    <child link="Target"/>
+    <origin xyz="-0.2 0 0" rpy="-0.2 0.8 0" />
+    <!-- <origin xyz="-0.2 0 0.45" rpy="-1.8875 0 0" /> -->
+    <axis xyz="1 0 0"/>
+</joint>
+
+  <!--Target-->
+  <link name="Target">
+      <inertial>
+      <origin xyz="0.3 0 0"/>
+      <mass value="620"/>
+      <inertia ixx="1115" ixy="0" ixz="0" iyy="734" iyz="0" izz="734"/>
+      </inertial>
+      <visual>
+      <origin xyz="0 0 0" rpy="0 -1.57075 0"/>
+      <geometry>
+          <cylinder length="1.5/3" radius="1.6/3"/>
+      </geometry>
+      <material name="Blue"/>
+      </visual>
+      <stiffness name="rigid"/>
+  </link>
+
+
+  <!-- Joint to target's Solar Panel -->
+    <joint name="Target_Left_Panel" type="fixed">
+        <parent link="Target"/>
+        <child link="Target_Panel"/>
+        <origin xyz="0 0 0.92" rpy="0 0 pi"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <!-- Target's Solar Panel-->
+    <link name="Target_Panel">
+        <inertial>
+        <origin rpy="0 0 0" xyz="0.001 0.001 1.3"/>
+        <mass value="21"/>
+        <inertia ixx="710" ixy="0" ixz="0" iyy="710" iyz="0" izz="6"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size="0.0066 0.66 1.8"/>
+        </geometry>
+        <material name="Blue"/>
+        </visual>
+        <stiffness name="rigid">
+
+        </stiffness>  
+    </link>
+
+</robot>

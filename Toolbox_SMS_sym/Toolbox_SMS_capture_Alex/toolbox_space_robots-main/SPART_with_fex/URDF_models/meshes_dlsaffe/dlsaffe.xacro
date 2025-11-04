@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<robot name="dlsaffe" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <material name="blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+
+    <material name="black">
+      <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="white">
+      <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="Grey">
+      <color rgba="0.4 0.4 0.4 1.0"/>
+    </material>
+
+    <xacro:macro name="default_inertial" params="mass">
+      <inertial>
+          <mass value="${mass}" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+    </xacro:macro>
+
+    <!-- some constants -->
+    <xacro:property name="safety_controller_k_pos" value="100" />
+    <xacro:property name="safety_controller_k_vel" value="2" />
+    <xacro:property name="joint_damping" value="0.5" />
+    <xacro:property name="max_effort" value="300"/>
+    <xacro:property name="max_velocity" value="10"/>
+    <xacro:property name="cylinder_radius" value="0.01" />
+
+    <xacro:property name="PI" value="3.1415926535897931"/>
+
+    <xacro:property name="t0_z" value="0.060"/>
+    <xacro:property name="t1_z" value="0.11"/>
+    <xacro:property name="t2_y" value="-2.36"/>
+    <xacro:property name="t3_y" value="0.085"/>
+    <xacro:property name="t4_x" value="-2.37"/>
+    <xacro:property name="t4_z" value="-0.24"/>
+    <xacro:property name="t5_y" value="-0.10"/>
+    <xacro:property name="t6_z" value="0.13"/>
+
+  <!-- Import Transmissions -->
+  <xacro:include filename="$(find dlsaffe.transmission.xacro" />
+
+
+  <xacro:macro name="dlsaffe" params="parent hardware_interface robot_name *origin">
+
+    <!--joint between {parent} and link_0-->
+    <joint name="${parent}_${robot_name}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${robot_name}_link_0"/>
+    </joint>
+
+    <link name="${robot_name}_link_0">
+
+<!--
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1"/>
+        <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      </inertial>
+-->
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_0.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_0.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_0 and link_1 -->
+    <joint name="${robot_name}_joint_1" type="revolute">
+      <parent link="${robot_name}_link_0"/>
+      <child link="${robot_name}_link_1"/>
+      <origin xyz="0 0 ${t0_z}" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI}" upper="${PI}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-178 * PI / 180}"
+                         soft_upper_limit="${188 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_1">
+
+<!--
+      <inertial>
+        <origin xyz="0 0.012 0.087" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      </inertial>
+-->
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_1.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_1.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_1 and link_2 | 1_T_2 -->
+    <joint name="${robot_name}_joint_2" type="revolute">
+      <parent link="${robot_name}_link_1"/>
+      <child link="${robot_name}_link_2"/>
+      <origin xyz="0 0 ${t1_z}" rpy="${-PI / 2} 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI / 2}" upper="${PI / 2}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-88 * PI / 180}"
+                         soft_upper_limit="${88 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_2">
+
+<!--
+      <inertial>
+        <origin xyz="0.5 0.012 0.087" rpy="0 0 0"/>
+        <mass value="2"/>
+        <inertia ixx="0.01"  ixy="0"  ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+      </inertial>
+-->
+
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 ${-PI / 2}"/>
+        <geometry>
+          <mesh filename="package://visual/link_2.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 ${-PI / 2}"/>
+        <geometry>
+          <mesh filename="package://visual/link_2.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_2 and link_3 | 2_T_3 -->
+    <joint name="${robot_name}_joint_3" type="revolute">
+      <parent link="${robot_name}_link_2"/>
+      <child link="${robot_name}_link_3"/>
+      <origin xyz="0 ${t2_y} 0" rpy="0 0 ${PI}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI / 2}" upper="${PI / 2}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-88 * PI / 180}"
+                         soft_upper_limit="${88 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_3">
+
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_3.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_3.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_3 and link_4 | 3_T_4 -->
+    <joint name="${robot_name}_joint_4" type="revolute">
+      <parent link="${robot_name}_link_3"/>
+      <child link="${robot_name}_link_4"/>
+      <origin xyz="0 ${t3_y} 0" rpy="${PI/2} 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI}" upper="${PI}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-178 * PI / 180}"
+                         soft_upper_limit="${178 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_4">
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
+        <geometry>
+          <mesh filename="package://visual/link_4.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
+        <geometry>
+          <mesh filename="package://visual/link_4.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_4 and link_5 | 4_T_5 -->
+    <joint name="${robot_name}_joint_5" type="revolute">
+      <parent link="${robot_name}_link_4"/>
+      <child link="${robot_name}_link_5"/>
+      <origin xyz="${t4_x} 0 ${t4_z}" rpy="${PI / 2} ${PI / 2} 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI / 2}" upper="${PI / 2}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-88 * PI / 180}"
+                         soft_upper_limit="${88 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_5">
+
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 ${-PI / 2}"/>
+        <geometry>
+          <mesh filename="package://visual/link_5.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI / 2} 0 ${-PI / 2}"/>
+        <geometry>
+          <mesh filename="package://visual/link_5.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- joint between link_5 and link_6 | 5_T_6 -->
+    <joint name="${robot_name}_joint_6" type="revolute">
+      <parent link="${robot_name}_link_5"/>
+      <child link="${robot_name}_link_6"/>
+      <origin xyz="0 ${t5_y} 0" rpy="${PI / 2} 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-PI}" upper="${PI}"
+             effort="${max_effort}" velocity="${max_velocity}" />
+      <safety_controller soft_lower_limit="${-178 * PI / 180}"
+                         soft_upper_limit="${178 * PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+    </joint>
+
+    <link name="${robot_name}_link_6">
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 ${-PI / 2} 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_6.stl"/>
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 ${-PI / 2} 0"/>
+        <geometry>
+          <mesh filename="package://visual/link_6.stl"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- last joint -->
+    <joint name="${robot_name}_joint_ee" type="fixed">
+      <parent link="${robot_name}_link_6"/>
+      <child link="${robot_name}_link_ee"/>
+      <origin xyz="0 0 ${t6_z}" rpy="0 0 0"/>
+    </joint>
+
+    <link name="${robot_name}_link_ee">
+    </link>
+
+    <!--Extensions -->
+    <xacro:dlsaffe_transmission hardware_interface="${hardware_interface}"/>
+
+  </xacro:macro>
+
+</robot>

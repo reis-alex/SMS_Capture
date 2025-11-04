@@ -1,0 +1,61 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="119,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T3U3">r_com</span> = Center_of_Mass(<span class="var type1" id="S3T3U6">r0</span>,<span class="var type1" id="S4T99U7">rL</span>,<span class="var type1" id="S5T94U8">robot</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="119,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% Computes the center-of-mass (CoM) of the system.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% r_com = Center_of_Mass(r0,rL,robot)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% :parameters: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   * r0 -- Position of the base-link, projected in the inertial CCS -- [3x1].</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   * rL -- Positions of the links, projected in the inertial CCS -- as a [3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   * robot -- Robot model (see :doc:`/Tutorial_Robot`).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,10" id="srcline10">10</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,11" id="srcline11">11</a></span><span class="line"><span class="comment">% :return:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,12" id="srcline12">12</a></span><span class="line"><span class="comment">%   * r_com -- Location of the center-of-mass, projected in the inertial CCS  -- [3x1].</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,13" id="srcline13">13</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,14" id="srcline14">14</a></span><span class="line"><span class="comment">% Use :func:`src.kinematics_dynamics.Kinematics` to compute ``rL``.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,15" id="srcline15">15</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,16" id="srcline16">16</a></span><span class="line"><span class="comment">% This function can also be used to compute the velocity/acceleration of the center-of-mass.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,17" id="srcline17">17</a></span><span class="line"><span class="comment">% To do it use as paremeters the velocities ``r0dot,rLdot`` or acceleration ``r0ddot,rLddot`` and you will get the CoM  velocity ``rcomdot`` or acceleration ``rcomddot``.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,18" id="srcline18">18</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,19" id="srcline19">19</a></span><span class="line"><span class="comment">% See also: :func:`src.kinematics_dynamics.Kinematics`</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,20" id="srcline20">20</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,21" id="srcline21">21</a></span><span class="line"><span class="comment"><span class="comment">%{  </span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,22" id="srcline22">22</a></span><span class="line"><span class="comment">    LICENSE</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,23" id="srcline23">23</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,24" id="srcline24">24</a></span><span class="line"><span class="comment">    This program is free software: you can redistribute it and/or modify</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,25" id="srcline25">25</a></span><span class="line"><span class="comment">    it under the terms of the GNU Lesser General Public License as published by</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,26" id="srcline26">26</a></span><span class="line"><span class="comment">    the Free Software Foundation, either version 3 of the License, or</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,27" id="srcline27">27</a></span><span class="line"><span class="comment">    (at your option) any later version.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,28" id="srcline28">28</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,29" id="srcline29">29</a></span><span class="line"><span class="comment">    This program is distributed in the hope that it will be useful,</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,30" id="srcline30">30</a></span><span class="line"><span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,31" id="srcline31">31</a></span><span class="line"><span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,32" id="srcline32">32</a></span><span class="line"><span class="comment">    GNU Lesser General Public License for more details.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,33" id="srcline33">33</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,34" id="srcline34">34</a></span><span class="line"><span class="comment">    You should have received a copy of the GNU Lesser General Public License</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,35" id="srcline35">35</a></span><span class="line"><span class="comment">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,36" id="srcline36">36</a></span><span class="line"><span class="comment"><span class="comment">%}</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,37" id="srcline37">37</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,38" id="srcline38">38</a></span><span class="line"><span class="comment">%=== CODE ===%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,39" id="srcline39">39</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,40" id="srcline40">40</a></span><span class="line"><span class="comment">%Initialize total mass and total mass * distance</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,41" id="srcline41">41</a></span><span class="line"><span class="mxinfo " id="T5:U5"><span class="var type1" id="S6T5U11">mass_total</span>=<span class="mxinfo " id="T5:U7"><span class="mxinfo " id="T12:U8"><span class="var type1" id="S5T94U14">robot</span>.base_link</span>.mass</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="119,42" id="srcline42">42</a></span><span class="line"><span class="mxinfo " id="T3:U10"><span class="var type1" id="S7T3U19">mass_r</span>=<span class="mxinfo " id="T3:U12"><span class="var type1" id="S3T3U21">r0</span>*<span class="mxinfo " id="T5:U14"><span class="mxinfo " id="T12:U15"><span class="var type1" id="S5T94U24">robot</span>.base_link</span>.mass</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="119,43" id="srcline43">43</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,44" id="srcline44">44</a></span><span class="line"><span class="comment">%Add contributions of links</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,45" id="srcline45">45</a></span><span class="line"><span class="keyword">for</span> <span class="var type1" id="S8T5U29">i</span>=<span class="mxinfo " id="T65:U18"><span class="mxinfo " id="T5:U19">1</span>:<span class="mxinfo " id="T5:U20"><span class="var type1" id="S5T94U33">robot</span>.n_links_joints</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,46" id="srcline46">46</a></span><span class="line">    <span class="mxinfo " id="T5:U22"><span class="var type1" id="S6T5U37">mass_total</span>=<span class="mxinfo " id="T5:U24"><span class="var type1" id="S6T5U39">mass_total</span>+<span class="mxinfo " id="T5:U26"><span class="mxinfo " id="T47:U27"><span class="mxinfo " id="T97:U28"><span class="var type1" id="S5T94U43">robot</span>.links</span>(<span class="var type1" id="S8T5U45">i</span>)</span>.mass</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="119,47" id="srcline47">47</a></span><span class="line">    <span class="mxinfo " id="T3:U31"><span class="var type1" id="S7T3U49">mass_r</span> = <span class="mxinfo " id="T3:U33"><span class="var type1" id="S7T3U51">mass_r</span>+<span class="mxinfo " id="T3:U35"><span class="mxinfo " id="T3:U36"><span class="var type1" id="S4T99U54">rL</span>(<span class="mxinfo " id="T46:U38"><span class="mxinfo " id="T5:U39">1</span>:<span class="mxinfo " id="T5:U40">3</span></span>,<span class="var type1" id="S8T5U58">i</span>)</span>.*<span class="mxinfo " id="T5:U42"><span class="mxinfo " id="T47:U43"><span class="mxinfo " id="T97:U44"><span class="var type1" id="S5T94U62">robot</span>.links</span>(<span class="var type1" id="S8T5U64">i</span>)</span>.mass</span></span></span></span>; </span></span>
+<span class="srcline"><span class="lineno"><a href="119,48" id="srcline48">48</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,49" id="srcline49">49</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,50" id="srcline50">50</a></span><span class="line"><span class="comment">%Compute center-of-mass</span></span></span>
+<span class="srcline"><span class="lineno"><a href="119,51" id="srcline51">51</a></span><span class="line"><span class="mxinfo " id="T3:U47"><span class="var type1" id="S2T3U68">r_com</span>=<span class="mxinfo " id="T3:U49"><span class="var type1" id="S7T3U70">mass_r</span>./<span class="var type1" id="S6T5U71">mass_total</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="119,52" id="srcline52">52</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="119,53" id="srcline53">53</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="110,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T3U3">Angles</span> = DCM_Angles321(<span class="var type1" id="S3T4U6">DCM</span>) <span class="comment">%#codegen</span></span></span>
+<span class="srcline"><span class="lineno"><a href="110,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%Convert the DCM to Euler angles (321 sequence), x-phi, y-theta, z-psi.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="110,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="110,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% This solution generates angle theta between -pi/2 and pi/2,</span></span></span>
+<span class="srcline"><span class="lineno"><a href="110,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% and angles phi and psi between -pi and pi.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="110,6" id="srcline6"> 6</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="110,7" id="srcline7"> 7</a></span><span class="line"><span class="mxinfo " id="T3:U3"><span class="var type1" id="S2T3U9">Angles</span>=<span class="mxinfo " id="T3:U5">[ <span class="mxinfo " id="T5:U6">atan2(<span class="mxinfo " id="T5:U7"><span class="var type1" id="S3T4U15">DCM</span>(<span class="mxinfo " id="T37:U9">2</span>,<span class="mxinfo " id="T37:U10">3</span>)</span>,<span class="mxinfo " id="T5:U11"><span class="var type1" id="S3T4U19">DCM</span>(<span class="mxinfo " id="T37:U13">3</span>,<span class="mxinfo " id="T37:U14">3</span>)</span>)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="110,8" id="srcline8"> 8</a></span><span class="line">        <span class="mxinfo " id="T5:U15">asin(<span class="mxinfo " id="T5:U16">-<span class="mxinfo " id="T5:U17"><span class="var type1" id="S3T4U27">DCM</span>(<span class="mxinfo " id="T37:U19">1</span>,<span class="mxinfo " id="T37:U20">3</span>)</span></span>)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="110,9" id="srcline9"> 9</a></span><span class="line">        <span class="mxinfo " id="T5:U21">atan2(<span class="mxinfo " id="T5:U22"><span class="var type1" id="S3T4U34">DCM</span>(<span class="mxinfo " id="T37:U24">1</span>,<span class="mxinfo " id="T37:U25">2</span>)</span>,<span class="mxinfo " id="T5:U26"><span class="var type1" id="S3T4U38">DCM</span>(<span class="mxinfo " id="T37:U28">1</span>,<span class="mxinfo " id="T37:U29">1</span>)</span>)</span>]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="110,10" id="srcline10">10</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="110,11" id="srcline11">11</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="110,12" id="srcline12">12</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

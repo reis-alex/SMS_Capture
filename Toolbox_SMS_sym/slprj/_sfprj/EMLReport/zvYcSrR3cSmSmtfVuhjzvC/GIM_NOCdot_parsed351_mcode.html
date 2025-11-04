@@ -1,0 +1,52 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="124,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> [<span class="var type1" id="S2T27U3">H0dot</span>, <span class="var type1" id="S3T29U4">H0mdot</span>, <span class="var type1" id="S4T30U5">Hmdot</span>]=GIM_NOCdot_parsed(<span class="var type1" id="S5T106U8">N</span>, <span class="var type1" id="S6T106U9">Ndot</span>,<span class="var type1" id="S7T4U10">I0</span>,<span class="var type1" id="S8T98U11">Im</span>,<span class="var type1" id="S9T4U12">I0_d</span>,<span class="var type1" id="S10T98U13">Im_d</span>,<span class="var type2" id="S11T94V7U14">robot</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="124,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% Computes the Generalized Inertia Matrix (GIM) Hdot time derivative of the multibody system.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% [Hdot]=GIM_NOCdot(N,Ndot, I0,Im,I0_d, Im_d, robot)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% H is unparsed</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% :parameters: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   * N -- Natural Orthogonal Complement (NOC) matrix -- a [(6+6*n)x(6+n_q)] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   * Ndot -- Natural Orthogonal Complesment (NOC) matrix time-derivative -- as a [(6+6*n)x(6+n_q)] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   * I0 -- Base-link inertia matrix, projected in the inertial CCS -- as a [3x3] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,10" id="srcline10">10</a></span><span class="line"><span class="comment">%   * Im -- Links inertia matrices, projected in the inertial CCS -- as a [3x3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,11" id="srcline11">11</a></span><span class="line"><span class="comment">%   * I0_d -- Base-link inertia matrix time derivative, projected in the inertial CCS -- as a [3x3] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,12" id="srcline12">12</a></span><span class="line"><span class="comment">%   * Im_d -- Links inertia matrices time derivative, projected in the inertial CCS -- as a [3x3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,13" id="srcline13">13</a></span><span class="line"><span class="comment">%   * robot -- Robot model (see :doc:`/Tutorial_Robot`).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,14" id="srcline14">14</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,15" id="srcline15">15</a></span><span class="line"><span class="comment">% :return: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,16" id="srcline16">16</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,17" id="srcline17">17</a></span><span class="line"><span class="comment">%   * Hdot -- Generalized Inertia Matrix time derivative -- as a [(6+n_q)x(6+n_q)] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,18" id="srcline18">18</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,19" id="srcline19">19</a></span><span class="line"><span class="comment">% See also: :func:`src.kinematics_dynamics.GIM_NOCdot`.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,20" id="srcline20">20</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="124,21" id="srcline21">21</a></span><span class="line"><span class="comment">%=== LICENSE ===%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,22" id="srcline22">22</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="124,23" id="srcline23">23</a></span><span class="line"><span class="comment">%     This program is free software: you can redistribute it and/or modify</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,24" id="srcline24">24</a></span><span class="line"><span class="comment">%     it under the terms of the GNU Lesser General Public License as published by</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,25" id="srcline25">25</a></span><span class="line"><span class="comment">%     the Free Software Foundation, either version 3 of the License, or</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,26" id="srcline26">26</a></span><span class="line"><span class="comment">%     (at your option) any later version.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,27" id="srcline27">27</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,28" id="srcline28">28</a></span><span class="line"><span class="comment">%     This program is distributed in the hope that it will be useful,</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,29" id="srcline29">29</a></span><span class="line"><span class="comment">%     but WITHOUT ANY WARRANTY; without even the implied warranty of</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,30" id="srcline30">30</a></span><span class="line"><span class="comment">%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,31" id="srcline31">31</a></span><span class="line"><span class="comment">%     GNU Lesser General Public License for more details.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,32" id="srcline32">32</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,33" id="srcline33">33</a></span><span class="line"><span class="comment">%     You should have received a copy of the GNU Lesser General Public License</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,34" id="srcline34">34</a></span><span class="line"><span class="comment">%     along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,35" id="srcline35">35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="124,36" id="srcline36">36</a></span><span class="line"><span class="comment">%=== CODE ===%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,37" id="srcline37">37</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="124,38" id="srcline38">38</a></span><span class="line"><span class="comment">%--- generalized mass matrix M ---%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="124,39" id="srcline39">39</a></span><span class="line"><span class="mxinfo " id="T32:U11"><span class="var type1" id="S12T32U17">Hdot</span> = <span class="mxinfo " id="T32:U13"><span class="fcn" id="F352N8:B19">GIM_NOCdot</span>(<span class="var type1" id="S5T106U20">N</span>, <span class="var type1" id="S6T106U21">Ndot</span>,<span class="var type1" id="S7T4U22">I0</span>,<span class="var type1" id="S8T98U23">Im</span>,<span class="var type1" id="S9T4U24">I0_d</span>,<span class="var type1" id="S10T98U25">Im_d</span>,<span class="var type1" id="S11T94U26">robot</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="124,40" id="srcline40">40</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="124,41" id="srcline41">41</a></span><span class="line"><span class="mxinfo " id="T27:U21"><span class="var type1" id="S2T27U29">H0dot</span> = <span class="mxinfo " id="T27:U23"><span class="var type1" id="S12T32U31">Hdot</span>(<span class="mxinfo " id="T35:U25">1:6</span>, <span class="mxinfo " id="T35:U26">1:6</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="124,42" id="srcline42">42</a></span><span class="line"><span class="mxinfo " id="T29:U27"><span class="var type1" id="S3T29U40">H0mdot</span> = <span class="mxinfo " id="T29:U29"><span class="var type1" id="S12T32U42">Hdot</span>(<span class="mxinfo " id="T35:U31">1:6</span>, <span class="mxinfo " id="T109:U32">7:6+<span class="var type1" id="S11T94U51">robot</span>.n_q</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="124,43" id="srcline43">43</a></span><span class="line"><span class="mxinfo " id="T30:U34"><span class="var type1" id="S4T30U55">Hmdot</span> = <span class="mxinfo " id="T30:U36"><span class="var type1" id="S12T32U57">Hdot</span>(<span class="mxinfo " id="T109:U38">7:6+<span class="var type1" id="S11T94U63">robot</span>.n_q</span>, <span class="mxinfo " id="T109:U40">7:6+<span class="var type1" id="S11T94U70">robot</span>.n_q</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="124,44" id="srcline44">44</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>

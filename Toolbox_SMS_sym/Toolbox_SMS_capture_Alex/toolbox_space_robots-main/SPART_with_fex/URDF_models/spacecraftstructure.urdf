@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<robot name="/workspace/astrolabe_simulator/worlds/SpacecraftStructure.urdf" xmlns:xacro="http://ros.org/wiki/xacro">
+  <link name="base_link">
+  </link>
+  <link name="base_link">
+  </link>
+  <joint name="Joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="Link_1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0.18" rpy="0 0 0"/>
+  </joint>
+  <link name="Link_1">
+  </link>
+  <joint name="Joint_2" type="revolute">
+    <parent link="Link_1"/>
+    <child link="Link_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0" rpy="0.785398 -1.570796 0.785398"/>
+  </joint>
+  <link name="Link_2">
+  </link>
+  <joint name="Joint_3" type="revolute">
+    <parent link="Link_2"/>
+    <child link="Link_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0.8 0 0" rpy="0 0 -1.570796"/>
+  </joint>
+  <link name="Link_3">
+  </link>
+  <joint name="Joint_4" type="revolute">
+    <parent link="Link_3"/>
+    <child link="Link_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0.65 0" rpy="-1.570796 0 0"/>
+  </joint>
+  <link name="Link_4">
+  </link>
+  <joint name="Joint_5" type="revolute">
+    <parent link="Link_4"/>
+    <child link="Link_5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0" rpy="1.570796 0 0"/>
+  </joint>
+  <link name="Link_5">
+  </link>
+  <joint name="Joint_6" type="revolute">
+    <parent link="Link_5"/>
+    <child link="Link_6"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0.325 0" rpy="-1.570796 0 0"/>
+  </joint>
+  <link name="Link_6">
+  </link>
+  <link name="base_link">
+  </link>
+  <joint name="Joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="Link_1"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0.18" rpy="0 0 0"/>
+  </joint>
+  <link name="Link_1">
+  </link>
+  <joint name="Joint_2" type="revolute">
+    <parent link="Link_1"/>
+    <child link="Link_2"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0" rpy="0.785398 -1.570796 0.785398"/>
+  </joint>
+  <link name="Link_2">
+  </link>
+  <joint name="Joint_3" type="revolute">
+    <parent link="Link_2"/>
+    <child link="Link_3"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0.8 0 0" rpy="0 0 -1.570796"/>
+  </joint>
+  <link name="Link_3">
+  </link>
+  <joint name="Joint_4" type="revolute">
+    <parent link="Link_3"/>
+    <child link="Link_4"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0.65 0" rpy="-1.570796 0 0"/>
+  </joint>
+  <link name="Link_4">
+  </link>
+  <joint name="Joint_5" type="revolute">
+    <parent link="Link_4"/>
+    <child link="Link_5"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0 0" rpy="1.570796 0 0"/>
+  </joint>
+  <link name="Link_5">
+  </link>
+  <joint name="Joint_6" type="revolute">
+    <parent link="Link_5"/>
+    <child link="Link_6"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="50" lower="-3.14159" upper="3.14159" velocity="0.0939569"/>
+    <origin xyz="0 0.325 0" rpy="-1.570796 0 0"/>
+  </joint>
+  <link name="Link_6">
+  </link>
+  <link name="A_y">
+  </link>
+  <joint name="base_link_A_y_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="A_y"/>
+    <origin xyz="0.9 1 0" rpy="0 0 0"/>
+  </joint>
+  <link name="A_x">
+  </link>
+  <joint name="base_link_A_x_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="A_x"/>
+    <origin xyz="1.9 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="A_hub">
+  </link>
+  <joint name="base_link_A_hub_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="A_hub"/>
+    <origin xyz="0.9 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="gyro">
+  </link>
+  <joint name="base_link_gyro_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="gyro"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="IMU">
+  </link>
+  <joint name="base_link_IMU_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="IMU"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 2.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 2 5.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 2.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 2 5.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Ay">
+  </link>
+  <joint name="base_link_Ay_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ay"/>
+    <origin xyz="0 1 0" rpy="0 0 0"/>
+  </joint>
+  <link name="Ax">
+  </link>
+  <joint name="base_link_Ax_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ax"/>
+    <origin xyz="1 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="Ao">
+  </link>
+  <joint name="base_link_Ao_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ao"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 2.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 2 5.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 2.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 2 5.5"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="Ay">
+  </link>
+  <joint name="base_link_Ay_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ay"/>
+    <origin xyz="0 1 0" rpy="0 0 0"/>
+  </joint>
+  <link name="Ax">
+  </link>
+  <joint name="base_link_Ax_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ax"/>
+    <origin xyz="1 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="Ao">
+  </link>
+  <joint name="base_link_Ao_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="Ao"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="payload_module">
+  </link>
+  <joint name="base_link_payload_module_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="payload_module"/>
+    <origin xyz="2 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="reactionWheel_5">
+  </link>
+  <joint name="base_link_reactionWheel_5_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_5"/>
+    <origin xyz="0 0 0" rpy="3.141593 -1.563723 3.141593"/>
+  </joint>
+  <link name="reactionWheel_4">
+  </link>
+  <joint name="base_link_reactionWheel_4_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_4"/>
+    <origin xyz="0 0 0" rpy="-1.57787 0 0"/>
+  </joint>
+  <link name="reactionWheel_3">
+  </link>
+  <joint name="base_link_reactionWheel_3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_3"/>
+    <origin xyz="0 0 0" rpy="3.14159 0 0"/>
+  </joint>
+  <link name="reactionWheel_2">
+  </link>
+  <joint name="base_link_reactionWheel_2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_2"/>
+    <origin xyz="0 0 0" rpy="3.141593 1.563723 3.141593"/>
+  </joint>
+  <link name="reactionWheel_1">
+  </link>
+  <joint name="base_link_reactionWheel_1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_1"/>
+    <origin xyz="0 0 0" rpy="1.57787 0 0"/>
+  </joint>
+  <link name="reactionWheel_0">
+  </link>
+  <joint name="base_link_reactionWheel_0_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="reactionWheel_0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="emitter">
+  </link>
+  <joint name="base_link_emitter_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="emitter"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>

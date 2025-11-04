@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2020-03-05T10:21:52</created>
+    <modified>2020-03-05T10:21:52</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="Rail_Slot-mesh" name="Rail Slot">
+      <mesh>
+        <source id="Rail_Slot-mesh-positions">
+          <float_array id="Rail_Slot-mesh-positions-array" count="24">0.15 0.15 0.04999995 -0.15 0.15 -0.04999995 -0.15 0.15 0.04999995 0.15 0.15 -0.04999995 0.15 -0.15 0.04999995 0.15 -0.15 -0.04999995 -0.15 -0.15 -0.04999995 -0.15 -0.15 0.04999995</float_array>
+          <technique_common>
+            <accessor source="#Rail_Slot-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Rail_Slot-mesh-normals">
+          <float_array id="Rail_Slot-mesh-normals-array" count="18">0 -1 0 0 1 0 1 0 0 0 0 -1 0 0 1 -1 0 0</float_array>
+          <technique_common>
+            <accessor source="#Rail_Slot-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Rail_Slot-mesh-vertices">
+          <input semantic="POSITION" source="#Rail_Slot-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#Rail_Slot-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Rail_Slot-mesh-normals" offset="1"/>
+          <p>4 0 6 0 5 0 3 1 2 1 0 1 5 2 0 2 4 2 6 3 3 3 5 3 2 4 4 4 0 4 7 5 1 5 6 5 4 0 7 0 6 0 3 1 1 1 2 1 5 2 3 2 0 2 6 3 1 3 3 3 2 4 7 4 4 4 7 5 2 5 1 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Rail_Slot" name="Rail_Slot" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Rail_Slot-mesh" name="Rail_Slot"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

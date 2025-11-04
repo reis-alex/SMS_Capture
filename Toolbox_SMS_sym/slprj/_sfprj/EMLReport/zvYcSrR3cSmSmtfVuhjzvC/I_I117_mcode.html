@@ -1,0 +1,55 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="38,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> [<span class="var type1" id="S2T4U3">I0</span>,<span class="var type1" id="S3T23U4">Im</span>]=I_I(<span class="var type1" id="S4T4U7">R0</span>,<span class="var type1" id="S5T23U8">RL</span>,<span class="var type2" id="S6T19V2U9">robot</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="38,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% Projects the link inertias in the inertial CCS.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% [I0,Im]=I_I(R0,RL,robot)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% :parameters: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   * R0 -- Rotation matrix from the base-link CCS to the inertial CCS -- [3x3].</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   * RL -- Links CCS 3x3 rotation matrices with respect to the inertial CCS -- as a [3x3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   * robot -- Robot model (see :doc:`/Tutorial_Robot`).</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,10" id="srcline10">10</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,11" id="srcline11">11</a></span><span class="line"><span class="comment">% :return: </span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,12" id="srcline12">12</a></span><span class="line"><span class="comment">%   * I0 -- Base-link inertia matrix, projected in the inertial CCS -- as a [3x3] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,13" id="srcline13">13</a></span><span class="line"><span class="comment">%   * Im -- Links inertia matrices, projected in the inertial CCS -- as a [3x3xn] matrix.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,14" id="srcline14">14</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,15" id="srcline15">15</a></span><span class="line"><span class="comment">% See also: :func:`src.kinematics_dynamics.MCB`. </span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,16" id="srcline16">16</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,17" id="srcline17">17</a></span><span class="line"><span class="comment"><span class="comment">%{  </span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,18" id="srcline18">18</a></span><span class="line"><span class="comment">    LICENSE</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,19" id="srcline19">19</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,20" id="srcline20">20</a></span><span class="line"><span class="comment">    This program is free software: you can redistribute it and/or modify</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,21" id="srcline21">21</a></span><span class="line"><span class="comment">    it under the terms of the GNU Lesser General Public License as published by</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,22" id="srcline22">22</a></span><span class="line"><span class="comment">    the Free Software Foundation, either version 3 of the License, or</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,23" id="srcline23">23</a></span><span class="line"><span class="comment">    (at your option) any later version.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,24" id="srcline24">24</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,25" id="srcline25">25</a></span><span class="line"><span class="comment">    This program is distributed in the hope that it will be useful,</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,26" id="srcline26">26</a></span><span class="line"><span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,27" id="srcline27">27</a></span><span class="line"><span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,28" id="srcline28">28</a></span><span class="line"><span class="comment">    GNU Lesser General Public License for more details.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,29" id="srcline29">29</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,30" id="srcline30">30</a></span><span class="line"><span class="comment">    You should have received a copy of the GNU Lesser General Public License</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,31" id="srcline31">31</a></span><span class="line"><span class="comment">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,32" id="srcline32">32</a></span><span class="line"><span class="comment"><span class="comment">%}</span></span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,33" id="srcline33">33</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,34" id="srcline34">34</a></span><span class="line"><span class="comment">%=== CODE ===%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,35" id="srcline35">35</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,36" id="srcline36">36</a></span><span class="line"><span class="comment">%Base-link inertia</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,37" id="srcline37">37</a></span><span class="line"><span class="mxinfo " id="T4:U6"><span class="var type1" id="S2T4U12">I0</span> = <span class="mxinfo " id="T4:U8"><span class="mxinfo " id="T4:U9"><span class="var type1" id="S4T4U15">R0</span>*<span class="mxinfo " id="T4:U11"><span class="var type1" id="S6T19U18">robot</span>.base_link.inertia</span></span>*<span class="mxinfo " id="T4:U13"><span class="var type1" id="S4T4U22">R0</span>'</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="38,38" id="srcline38">38</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,39" id="srcline39">39</a></span><span class="line"><span class="comment">%Pre-allocate inertias</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,40" id="srcline40">40</a></span><span class="line"><span class="mxinfo " id="T23:U15"><span class="var type1" id="S3T23U25">Im</span>=<span class="mxinfo " id="T23:U17">zeros(<span class="mxinfo " id="T5:U18">3</span>,<span class="mxinfo " id="T5:U19">3</span>,<span class="mxinfo " id="T5:U20"><span class="var type1" id="S6T19U31">robot</span>.n_links_joints</span>,<span class="string">'like'</span>,<span class="var type1" id="S4T4U34">R0</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="38,41" id="srcline41">41</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,42" id="srcline42">42</a></span><span class="line"><span class="comment">%Inertias of the links</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,43" id="srcline43">43</a></span><span class="line"><span class="keyword">for</span> <span class="var type1" id="S8T5U37">i</span>=<span class="mxinfo " id="T16:U24"><span class="mxinfo " id="T5:U25">1</span>:(<span class="var type1" id="S6T19U42">robot</span>.n_links_joints)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,44" id="srcline44">44</a></span><span class="line">    <span class="mxinfo " id="T4:U27"><span class="mxinfo " id="T4:U28"><span class="var type1" id="S3T23U47">Im</span>(<span class="mxinfo " id="T46:U30"><span class="mxinfo " id="T5:U31">1</span>:<span class="mxinfo " id="T5:U32">3</span></span>,<span class="mxinfo " id="T46:U33"><span class="mxinfo " id="T5:U34">1</span>:<span class="mxinfo " id="T5:U35">3</span></span>,<span class="var type1" id="S8T5U54">i</span>)</span>=<span class="mxinfo " id="T4:U37"><span class="mxinfo " id="T4:U38"><span class="mxinfo " id="T4:U39"><span class="var type1" id="S5T23U58">RL</span>(<span class="mxinfo " id="T36:U41">1:3</span>,<span class="mxinfo " id="T36:U42">1:3</span>,<span class="var type1" id="S8T5U65">i</span>)</span>*<span class="mxinfo " id="T4:U44"><span class="mxinfo " id="T47:U45"><span class="mxinfo " id="T17:U46"><span class="var type1" id="S6T19U69">robot</span>.links</span>(<span class="var type1" id="S8T5U71">i</span>)</span>.inertia</span></span>*<span class="mxinfo " id="T4:U49"><span class="mxinfo " id="T4:U50"><span class="var type1" id="S5T23U75">RL</span>(<span class="mxinfo " id="T36:U52">1:3</span>,<span class="mxinfo " id="T36:U53">1:3</span>,<span class="var type1" id="S8T5U82">i</span>)</span>'</span></span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="38,45" id="srcline45">45</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="38,46" id="srcline46">46</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="38,47" id="srcline47">47</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>
