@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot name="free_body_with_dummy_joint">
+
+  <!-- Floating base link (no inertia) -->
+  <link name="base_link"/>
+
+  <!-- Main inertial body -->
+  <link name="body_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia
+        ixx="0.01"
+        iyy="0.01"
+        izz="0.01"
+        ixy="0.0"
+        ixz="0.0"
+        iyz="0.0"/>
+    </inertial>
+  </link>
+
+  <!-- Dummy joint (non-aligned axis) -->
+  <joint name="dummy_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="body_link"/>
+    <!-- position of the CoM -->
+    <origin xyz="0. 0. 0." rpy="0.0 0.0 0.0"/> 
+    <!-- Arbitrary non-axis-aligned rotation axis -->
+    <axis xyz="0. 0. 0."/>
+    <limit lower="-3.1416" upper="3.1416" effort="1" velocity="1"/>
+  </joint>
+
+</robot>

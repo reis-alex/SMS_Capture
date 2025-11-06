@@ -166,7 +166,7 @@ for k = 1:500
     end
 end
 
-%% 
+
 figure(1)
 plot(xsat(1,:),'r')
 hold on
@@ -205,42 +205,14 @@ plot(xsat(16,:),'r')
 hold on
 plot(xsat(17,:),'g')
 plot(xsat(18,:),'b')
-title('Base linear velocity (\dot(r)_0)')
+title('Base linear velocity (r0)')
 
-figure(6)
-plot(xsat(19,:),'--r')
+figure(2)
+plot(xsat(7,:),'--r')
 hold on
-plot(xsat(20,:),'--g')
-plot(xsat(21,:),'--b')
-plot(xsat(22,:),'r')
-plot(xsat(23,:),'g')
-plot(xsat(24,:),'b')
-title('Servicer joint velocities (reaction wheels (--), arm joints (-))')
-
-figure(7)
-plot(x_target(1,:),'r')
-hold on
-plot(x_target(2,:),'g')
-plot(x_target(3,:),'b')
-title('Target orientation')
-
-figure(8)
-plot(x_target(4,:),'r')
-hold on
-plot(x_target(5,:),'g')
-plot(x_target(6,:),'b')
-title('Target position')
-
-figure(9)
-plot(x_target(7,:),'r')
-hold on
-plot(x_target(8,:),'g')
-plot(x_target(9,:),'b')
-title('Target angular velocity')
-
-figure(10)
-plot(x_target(10,:),'r')
-hold on
-plot(x_target(11,:),'g')
-plot(x_target(12,:),'b')
-title('Target linear velocity')
+plot(xsat(8,:),'--g')
+plot(xsat(9,:),'--b')
+plot(xsat(10,:),'r')
+plot(xsat(11,:),'g')
+plot(xsat(12,:),'b')
+title('Servicer joints (reaction wheels (--), arm joints (-))')

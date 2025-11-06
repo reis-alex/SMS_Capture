@@ -1,4 +1,4 @@
-function [dX] = freefloating_is_captured(dt, xsat, R0s, xtarget, R0t, robot_pre, robot_pre_sim, target, tau, hcapt, init)
+function [dX, ddX] = freefloating_is_captured(dt, xsat, R0s, xtarget, R0t, robot_pre, robot_pre_sim, target, tau, hcapt, init)
 
 % load state vector for satelite and target
 r0_sat         = xsat(4:6);
@@ -129,14 +129,22 @@ ddq = Hdiamond\tau - Hdiamond\Cdiamond;
 ddq0_ddq = Bq0*ddq + Qcbar;
 ddq0 = ddq0_ddq(1:6);
 
-% equation (11) in Overleaf
-qdot = qdot_sat + dt*ddq0_ddq(7:end);
-dq0_dq = Bq0*qdot + Bh*hcapt;
+pinv([W0_dot Wq0_dot])*[W0 Wq0]*vertcat(ddq0,ddq)
+
+% integrate to obtain \dot{q}_0 and \dot{q}, starting from the measured
+% quantities
+dq0_dq = vertcat(omega0_sat,r0dot_sat,qdot_sat) + dt*vertcat(ddq0,ddq);
+q0dot = dq0_dq(1:6);
+qdot = dq0_dq(7:end);
 
 % equation (5) in Overleaf
-dq0_dq_dqt = Bcim*dq0_dq;
-dqt = dq0_dq_dqt(13:18);
+ddq0_ddq_ddqt = Bcim*ddq0_ddq + Bcim_dot*dq0_dq;
+ddqt = ddq0_ddq_ddqt(13:18);
+
+%integrate to obtain \dot{q}_t
+dqt = xtarget(7:end) + dt*ddqt;
 
 % gather all results and output to function
-dX = dq0_dq_dqt;
+ddX = ddq0_ddq_ddqt;
+dX = vertcat(dq0_dq,dqt);
 end
