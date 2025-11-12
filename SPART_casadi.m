@@ -5,6 +5,7 @@ classdef SPART_casadi
         state_vars
         tau
         R0
+        idx
         % functions to be generated once, then used in simulation
         ddX
         diffkinematics
@@ -18,14 +19,35 @@ classdef SPART_casadi
             [robot,~] = urdf2robot_flex_visu(path);
             obj.robot = robot;
             import casadi.*
-            obj.state_vars.q      = SX.sym('q', obj.robot.n_q,1);
-            obj.state_vars.qdot   = SX.sym('qdot', obj.robot.n_q,1);
+
+            % sort dimensions
+                obj.idx.r0 = [4:6];
+            if robot.n_q > 0
+                obj.idx.q = 7:6+obj.robot.n_q;
+                obj.idx.omega0 = obj.idx.q(end)+1:obj.idx.q(end)+3;
+                obj.idx.r0dot = obj.idx.omega0(end)+1:obj.idx.omega0(end)+3;
+                obj.idx.qdot = obj.idx.r0dot(end)+1:obj.idx.r0dot(end)+robot.n_q;
+                obj.idx.velocities = obj.idx.omega0(1):obj.idx.qdot(end);
+            else
+                obj.idx.q = [];
+                obj.idx.omega0 = 7:9;
+                obj.idx.r0dot = obj.idx.omega0(end)+1:obj.idx.omega0(end)+3;
+                obj.idx.qdot = [];
+                obj.idx.velocities = obj.idx.omega0(1):obj.idx.r0dot(end);
+            end
+                obj.idx.positions = 1:obj.idx.omega0(1)-1;
+
+            % create (unique) symbolic variables
+            theta0  = SX.sym('theta0',3,1);
+            r0      = SX.sym('r0', 3,1);
+            q      = SX.sym('q', obj.robot.n_q,1);
+            omega0  = SX.sym('omega_tt', 3,1);
+            r0dot   = SX.sym('r0dot', 3,1);
+            qdot   = SX.sym('qdot', obj.robot.n_q,1);
+
+            obj.state_vars = vertcat(theta0, r0, q, omega0, r0dot, qdot);
             obj.tau   = SX.sym('tau',obj.robot.n_q,1);
-            obj.state_vars.theta0  = SX.sym('theta0',3,1);
             obj.R0      = SX.sym('R0',3,3);
-            obj.state_vars.r0      = SX.sym('r0', 3,1);
-            obj.state_vars.r0dot   = SX.sym('r0dot', 3,1);
-            obj.state_vars.omega0  = SX.sym('omega_tt', 3,1);
 
             kin = obj.kinematicsf();
             obj.kinematics.rL = kin.rLf;
@@ -37,6 +59,8 @@ classdef SPART_casadi
 
             obj.diffkinematics.t0 = diffkin.t0f;
             obj.diffkinematics.tL = diffkin.tLf;
+            obj.diffkinematics.P0 = diffkin.P0f;
+            obj.diffkinematics.pm = diffkin.pmf;
             Hs = obj.H();
             obj.dynamics.H = Hs.Hf;
             Cs = obj.C();
@@ -55,6 +79,14 @@ classdef SPART_casadi
         end
 
         function out = ddXf(obj)
+
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            q       = obj.state_vars(obj.idx.q);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+
             H = obj.H();
             n_q = size1(H.Hm);
             H = [H.H0 H.H0m;
@@ -63,15 +95,22 @@ classdef SPART_casadi
             C = obj.C();
             C = [C.C0 C.C0m;
                 C.Cm0 C.Cm];
-            f = inv(H)*([zeros(6,1);obj.tau] - C*[obj.state_vars.omega0;obj.state_vars.r0dot;obj.state_vars.qdot]);
-            out = casadi.Function('Robot_acceleration',{obj.R0,obj.state_vars.r0,obj.state_vars.omega0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot,obj.tau},{f},{'R0','r0','omega0','q','r0dot','qdot','tau'},{'ddX'});
+            f = inv(H)*([zeros(6,1);obj.tau] - C*[omega0;r0dot;qdot]);
+            out = casadi.Function('Robot_acceleration',{obj.R0,obj.state_vars,obj.tau},{f},{'R0','StateVector','tau'},{'ddX'});
         end
 
         function out = diffkinematicsf(obj)
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+            q       = obj.state_vars(obj.idx.q);
+
             %Diferential Kinematics
             kin = obj.kinematicsf();
-            [Bij,Bi0,P0,pm]     = DiffKinematics_sym(obj.R0,obj.state_vars.r0,kin.rL,kin.e,kin.g,obj.robot);
-            [t0,tL]             = Velocities_sym(Bij,Bi0,P0,pm,[obj.state_vars.omega0; obj.state_vars.r0dot],obj.state_vars.qdot,obj.robot);
+            [Bij,Bi0,P0,pm]     = DiffKinematics_sym(obj.R0,r0,kin.rL,kin.e,kin.g,obj.robot);
+            [t0,tL]             = Velocities_sym(Bij,Bi0,P0,pm,[omega0; r0dot],qdot,obj.robot);
             out.t0 = t0;
             out.tL = tL;
             out.P0 = P0;
@@ -79,12 +118,21 @@ classdef SPART_casadi
             out.Bij = Bij;
             out.Bi0 = Bi0;
 
-            out.t0f = casadi.Function('t0',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0dot},{t0},{'R0','omega0','r0dot'},{'t0'});
-            out.tLf = casadi.Function('tL',{obj.R0,obj.state_vars.r0,obj.state_vars.omega0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot},{tL},{'R0','r0','omega0','qm','r0dot','qdot'},{'tL'});
+            out.t0f = casadi.Function('t0',{obj.R0,obj.state_vars},{t0},{'R0','StateVector'},{'t0'});
+            out.tLf = casadi.Function('tL',{obj.R0,obj.state_vars},{tL},{'R0','StateVector'},{'tL'});
+            out.P0f  = casadi.Function('P0',{obj.R0},{P0},{'R0'},{'P0'});
+            out.pmf  = casadi.Function('pm',{obj.R0,obj.state_vars},{pm},{'R0','StateVector'},{'pm'});
         end
 
         function out = kinematicsf(obj)
-            [~,RL,rJ,rL,e,g]     = Kinematics_sym(obj.R0,obj.state_vars.r0,obj.state_vars.q,obj.robot);
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            q       = obj.state_vars(obj.idx.q);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+
+            [~,RL,rJ,rL,e,g]     = Kinematics_sym(obj.R0,r0,q,obj.robot);
             out.RL = RL;
             out.rJ = rJ;
             out.rL = rL;
@@ -95,19 +143,26 @@ classdef SPART_casadi
 %                 out.RLf = casadi.Function('RL',{obj.R0,obj.state_vars.r0,obj.state_vars.q},RL(:,idx));
 %                 out.rLf = casadi.Function('rL',{obj.R0,obj.state_vars.r0,obj.state_vars.q},{rL(:,idx)},{'R0','r0','q'},{'rL'});
 %             else
-                out.RLf = casadi.Function('RL',{obj.R0,obj.state_vars.r0,obj.state_vars.q},RL);
-                out.rLf = casadi.Function('rL',{obj.R0,obj.state_vars.r0,obj.state_vars.q},{rL},{'R0','r0','q'},{'rL'});
+                out.RLf = casadi.Function('RL',{obj.R0,obj.state_vars},RL);
+                out.rLf = casadi.Function('rL',{obj.R0,obj.state_vars},{rL},{'R0','StateVector'},{'rL'});
 %             end
 
         end
 
         function out = I(obj)
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+            q       = obj.state_vars(obj.idx.q);
+
             % Inertias in inertial frames
             kin = obj.kinematicsf();
             [I0,Im]             =   I_I_sym(obj.R0,kin.RL,obj.robot);
             out.I0 = I0;
             out.Im = Im;
-            out.Imf = casadi.Function('Im',{obj.R0,obj.state_vars.q},{Im{end}},{'R0','qm'},{'Im'});
+            out.Imf = casadi.Function('Im',{obj.R0,q},{Im{end}},{'R0','StateVector'},{'Im'});
         end
 
         function out = M(obj)
@@ -129,7 +184,7 @@ classdef SPART_casadi
             out.Hm = Hm;
             H = [H0 H0m;
                  H0m' Hm];
-            out.Hf = casadi.Function('H',{obj.R0,obj.state_vars.r0,obj.state_vars.q},{H},{'R0','base_pos','joint_pos'},{'H'});
+            out.Hf = casadi.Function('H',{obj.R0,obj.state_vars},{H},{'R0','StateVector'},{'H'});
         end
         
         function out = C(obj)
@@ -143,30 +198,46 @@ classdef SPART_casadi
             out.Cm0 = Cm0;
             out.Cm = Cm;
             C = [C0 C0m; Cm0 Cm];
-            out.Cf = casadi.Function('C',{obj.R0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.omega0,obj.state_vars.r0dot,obj.state_vars.qdot},{C},{'R0','base_pos','joint_pos','omega0','r0dot','joint_vel'},{'C'});
+            out.Cf = casadi.Function('C',{obj.R0,obj.state_vars},{C},{'R0','StateVector'},{'C'});
         end
 
         function out = Jacob(obj,idx)
-            diffkin = obj.diffkinematicsf();
-            kin = obj.kinematicsf();
-            rp = kin.rL(:,idx);
-            [J0,Jm] = Jacob_sym(rp,obj.state_vars.r0,kin.rL,diffkin.P0,diffkin.pm,idx,obj.robot);
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+            q       = obj.state_vars(obj.idx.q);
+
+            P0 = obj.diffkinematics.P0(obj.R0);
+            pm = obj.diffkinematics.pm(obj.R0,obj.state_vars);
+            rL = obj.kinematics.rL(obj.R0,obj.state_vars);
+            [J0,Jm] = Jacob_sym(rL(:,idx),r0,rL,P0,pm,idx,obj.robot);
             out.J0 = J0;
             out.Jm = Jm;
-            out.J0f =  casadi.Function('J0',{obj.R0,obj.state_vars.r0,obj.state_vars.q},{J0},{'R0','r0','qm'},{'J0'});
-            out.Jmf = casadi.Function('Jm',{obj.R0,obj.state_vars.r0,obj.state_vars.q},{Jm},{'R0','r0','qm'},{'Jm'});
+            out.J0f = casadi.Function('J0',{obj.R0,obj.state_vars},{J0},{'R0','StateVector'},{'J0'});
+            out.Jmf = casadi.Function('Jm',{obj.R0,obj.state_vars},{Jm},{'R0','StateVector'},{'Jm'});
         end
 
         function out = Jacobdot(obj,idx)
-            diffkin = obj.diffkinematicsf();
-            kin = obj.kinematicsf();
-            rp = kin.rL(:,idx);
-            tp = casadi.SX.sym('tp',6,1); %what is this
-            [J0dot, Jmdot] = Jacobdot_sym(rp,tp,obj.state_vars.r0,diffkin.t0,kin.rL,diffkin.tL,diffkin.P0,diffkin.pm,idx,obj.robot);
+            theta0  = obj.state_vars(1:3);
+            r0      = obj.state_vars(4:6);
+            omega0  = obj.state_vars(obj.idx.omega0);
+            r0dot    = obj.state_vars(obj.idx.r0dot);
+            qdot    = obj.state_vars(obj.idx.qdot);
+            q       = obj.state_vars(obj.idx.q);
+
+            P0 = obj.diffkinematics.P0(obj.R0);
+            pm = obj.diffkinematics.pm(obj.R0,obj.state_vars);
+            rL = obj.kinematics.rL(obj.R0,obj.state_vars);
+            tL = obj.diffkinematics.tL(obj.R0,obj.state_vars);
+            t0 = obj.diffkinematics.t0(obj.R0,obj.state_vars);
+
+            [J0dot, Jmdot] = Jacobdot_sym(rL(:,idx),tL(:,idx),r0,t0,rL,tL,P0,pm,idx,obj.robot);
             out.J0dot = J0dot;
             out.Jmdot = Jmdot;
-            out.J0dotf = casadi.Function('J0dot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,tp},{J0dot},{'R0','omega0','r0','qm','r0dot','tp'},{'J0dot'});
-            out.Jmdotf = casadi.Function('Jmdot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot,tp},{Jmdot},{'R0','omega0','r0','qm','r0dot','qdot','tp'},{'Jmdot'});
+            out.J0dotf = casadi.Function('J0dot',{obj.R0,obj.state_vars},{J0dot},{'R0','StateVector'},{'J0dot'});
+            out.Jmdotf = casadi.Function('Jmdot',{obj.R0,obj.state_vars},{Jmdot},{'R0','StateVector'},{'Jmdot'});
         end
 
         function out = I_I_dot(obj)
@@ -178,15 +249,17 @@ classdef SPART_casadi
         end
 
         function out = NOC(obj)
+            r0      = obj.state_vars(4:6);
             diffkin = obj.diffkinematicsf();
             kin = obj.kinematicsf();
-            out = NOC_sym(obj.state_vars.r0,kin.rL,diffkin.P0,diffkin.pm,obj.robot);
+            out = NOC_sym(r0,kin.rL,diffkin.P0,diffkin.pm,obj.robot);
         end
 
         function out = NOC_dot(obj)
+            r0      = obj.state_vars(4:6);
             diffkin = obj.diffkinematicsf();
             kin = obj.kinematicsf();
-            out = NOCdot_sym(obj.state_vars.r0,diffkin.t0,kin.rL,diffkin.tL,diffkin.P0,diffkin.pm,obj.robot);
+            out = NOCdot_sym(r0,diffkin.t0,kin.rL,diffkin.tL,diffkin.P0,diffkin.pm,obj.robot);
         end
 
         function out = Hdot(obj)
@@ -198,14 +271,14 @@ classdef SPART_casadi
             Idot = obj.I_I_dot();
             I0_dot = Idot.I0;
             I_I_d = Idot.I_I;
-            [H0_dot, H0m_dot, Hm_dot] = GIM_NOCdot_parsed_sym(N, Ndot, I0, Im, I0_dot, I_I_d, obj.robot);
+            [H0_dot, H0m_dot, Hm_dot] = GIM_NOCdot_parsed_sym(N, Ndot, I0, Im, I0_dot, I_I_d, obj.robot); %tester avec GIM_sym?
             out.H0 = H0_dot;
             out.Hom = H0m_dot;
             Hdotf = [H0_dot H0m_dot; H0m_dot' Hm_dot];
-            out.Hdot = casadi.Function('Hdot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot},{Hdotf},{'R0','omega0','r0','qm','r0dot','qdot'},{'Hdot'});
-            out.H0_dotf = casadi.Function('H0_dot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot},{H0_dot},{'R0','omega0','r0','qm','r0dot','qdot'},{'H0dot'});
-            out.H0m_dotf = casadi.Function('H0m_dot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot},{H0m_dot},{'R0','omega0','r0','qm','r0dot','qdot'},{'H0mdot'});
-            out.Hm_dotf = casadi.Function('Hm_dot',{obj.R0,obj.state_vars.omega0,obj.state_vars.r0,obj.state_vars.q,obj.state_vars.r0dot,obj.state_vars.qdot},{Hm_dot},{'R0','omega0','r0','qm','r0dot','qdot'},{'Hmdot'});
+            out.Hdot = casadi.Function('Hdot',{obj.R0,obj.state_vars},{Hdotf},{'R0','StateVector'},{'Hdot'});
+            out.H0_dotf = casadi.Function('H0_dot',{obj.R0,obj.state_vars},{H0_dot},{'R0','StateVector'},{'H0dot'});
+            out.H0m_dotf = casadi.Function('H0m_dot',{obj.R0,obj.state_vars},{H0m_dot},{'R0','StateVector'},{'H0mdot'});
+            out.Hm_dotf = casadi.Function('Hm_dot',{obj.R0,obj.state_vars},{Hm_dot},{'R0','StateVector'},{'Hmdot'});
            
         end
 
