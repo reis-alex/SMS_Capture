@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+
+<robot name="box_pole">
+
+  <!-- Colors -->
+  <material name="Grey">
+      <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="Orange">
+      <color rgba="1.0 0.4 0.3 1.0"/>
+  </material>
+  <material name="Blue">
+  <color rgba="0.5 0.7 1.0 1.0"/>
+  </material>
+  <material name="Red">
+      <color rgba="1 0 0 1.0"/>
+  </material>
+
+<!-- ********************************************************** -->
+
+
+  <!--Spacecraft-->
+  <link name="Spacecraft">
+      <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="100"/>
+      <inertia ixx="40" ixy="0" ixz="0" iyy="20" iyz="0" izz="40"/>
+      </inertial>
+      <visual>
+      <origin xyz="0. 0 0" rpy="0 0 0"/>
+      <geometry>
+          <box size="0.6 0.6 0.6"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+    <stiffness name="rigid"/>
+  </link>
+
+
+  <!-- Joint to Manipulator -->
+  <joint name="Spacecraft_Manipulator_Joint" type="revolute">
+    <parent link="Spacecraft"/>
+    <child link="Link_EE"/>
+    <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+    <axis xyz="1 0 0"/>
+  </joint>
+
+ <!-- Link 0 -->
+  <link name="Link_EE">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+      <mass value="0.1"/>
+      <inertia ixx="35e-4" ixy="0" ixz="0" iyy="7e-4" iyz="0" izz="4e-4"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.15"/>
+      </geometry>
+      <material name="Grey"/>
+    </visual>
+  </link>
+
+</robot>

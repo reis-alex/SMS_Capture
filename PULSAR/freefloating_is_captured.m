@@ -1,4 +1,4 @@
-function [xsat_plus, xtarget_plus] = freefloating_is_captured(dt, xsat, R0s, xtarget, R0t, satelite, robot_pre_sim, target, tau, hcapt)
+function [xsat_plus, xtarget_plus] = freefloating_is_captured(dt, xsat, R0s, xtarget, R0t, satelite, target, tau, hcapt)
 tic
 % load state vector for satelite and target
 r0_sat          = xsat(satelite.idx.r0);
@@ -28,7 +28,7 @@ Ht      = full(target.dynamics.H(R0t,xtarget));
 H_bar   = full(blkdiag(H,Ht));
 
 % end effector jacobian (from SPART)
-EE_idx = find(strcmp({robot_pre_sim.links.name},'Link_EE'));
+EE_idx = find(strcmp({satelite.robot.links.name},'Link_6_'));
 Jee = satelite.Jacob(EE_idx);
 Je  = full(Jee.Jmf(R0s,xsat));
 J0  = full(Jee.J0f(R0s,xsat));
@@ -99,7 +99,6 @@ Wq0 = P0_spart*H0q+Pt*Ht*Jt_inv*Je;
 Wq0_dot = P0_dot_spart*H0q + P0_spart*H0q_dot + Pt_dot*Ht*Jt_inv*Je + Pt*Htdot*Jt_inv*Je + Pt*Ht*Jt_inv_dot*Je +Pt*Ht*Jt_inv*Je_dot;
 
 %simplify what's to come, inverse only once
-W0_inv = inv(W0);
 W0i_Wq0 = full(W0\Wq0); 
 W0_inv_hcapt = full(W0\hcapt);
 
@@ -118,8 +117,19 @@ xtarget_plus = zeros(length(xtarget),1);
 % final dynamics (\ddot{q} in Overleaf)
 ddq = Hdiamond \ (tau - Cdiamond);
 
-% integrate ddq
+b = (tau - Cdiamond);
+if min(eig(Hdiamond)) > 0  % quick SPD test
+    L = chol(Hdiamond,'lower');     % H = L * L'
+    y = L \ b;
+    ddq = L' \ y;
+else
+    ddq = Hdiamond \ b;  % fallback
+end
+
+
+%% integrate ddq
 qdot_plus = qdot_sat + dt*full(ddq);
+
 qdot0_plus = - (W0 \ (Wq0 * qdot_plus)) + (W0 \ hcapt);
 xsat_plus(satelite.idx.qdot) = qdot_plus;
 xsat_plus(satelite.idx.omega0(1):satelite.idx.r0dot(end)) = qdot0_plus;
@@ -128,6 +138,7 @@ qdot_full_post = vertcat(xsat_plus(satelite.idx.velocities));
 xtarget_plus(7:12) = (+Jt_inv * [J0, Je]) * qdot_full_post; %
 xsat_plus(satelite.idx.positions) = xsat(satelite.idx.positions) + dt * xsat_plus(satelite.idx.velocities);   % use xsat_plus velocities (13:24)
 xtarget_plus(target.idx.positions) = xtarget(target.idx.positions) + dt * xtarget_plus(target.idx.velocities);
+
 
 
 end

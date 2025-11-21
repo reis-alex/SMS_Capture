@@ -1,0 +1,222 @@
+addpath(genpath([pwd '\Toolbox_SMS_sym']));
+clear all, clc
+close all
+import casadi.*
+
+% load robot through URDFs, generate model
+robot_path_pre = [pwd '\robot_isparo.urdf'];
+[satelite,~] = urdf2robot_flex_visu(robot_path_pre);
+[robot_pre_sim]= robot_slx_format(satelite);
+satelite = SPART_casadi(robot_path_pre);
+
+% auxiliary skew symmetric matrix
+SkewSym = @(x)[0 -x(3) x(2); x(3) 0 -x(1); -x(2) x(1) 0];
+
+% for quaternion integration and conversions
+quaternion = quaternion();
+
+
+%% System dimensions
+xsat_ini = vertcat(zeros(6,1), ...                  % null initial displacements
+                    zeros(3,1), ... % first 3: q_wheels,
+                    zeros(5,1), ... % last 5: q_arm
+                    zeros(length(satelite.idx.velocities),1));                               % null velocities
+
+% initialize satelite's state vector
+R0s = eye(3);
+q0s = quaternion.rotm_to_quat(R0s); %initial quaternion, obtained directly from R0
+
+Hs = satelite.dynamics.H;
+Cs = satelite.dynamics.C;
+
+link_positions(:,:,1) = full(satelite.kinematics.rL(R0s,xsat_ini(1:6+satelite.robot.n_q)));
+pos_t = full(link_positions(:,end,1));
+
+%%
+H_sym = satelite.dynamics.H(satelite.R0,satelite.state_vars);
+C_sym = satelite.dynamics.C(satelite.R0,satelite.state_vars);
+
+n0 = 6;
+nq = satelite.robot.n_q;
+nr = 3; 
+
+H00 = H_sym(1:n0, 1:n0);
+H0q = H_sym(1:n0, n0+1 : n0+nq);
+Hqq = H_sym(n0+1 : n0+nq, n0+1 : n0+nq);
+
+moment_satelite = casadi.Function('h_sat',{satelite.R0,satelite.state_vars},{H00*satelite.state_vars(satelite.idx.velocities(1:6))});
+moment_wheels = casadi.Function('h_wheel',{satelite.R0,satelite.state_vars},{H0q(:,1:3)*satelite.state_vars(satelite.idx.velocities(7:9))});
+moment_arm = casadi.Function('h_arm',{satelite.R0,satelite.state_vars},{H0q(:,4:end)*satelite.state_vars(satelite.idx.velocities(10:14))});
+
+%% MPC
+tau = casadi.SX.sym('torque_arm',satelite.robot.n_q,1);
+% Define MPC problem
+opt.model.states   = [satelite.state_vars([1:14 21:end])];
+f_mpc = satelite.dynamics.ddX(satelite.R0,satelite.state_vars,tau);
+f_mpc = casadi.substitute(f_mpc, satelite.state_vars(15:20),  -H00\H0q*satelite.state_vars(21:end));
+
+texp = [satelite.state_vars(satelite.idx.velocities);f_mpc(7:end)];
+texp = casadi.substitute(texp, satelite.state_vars(15:20),  -H00\H0q*satelite.state_vars(21:end));
+texp = casadi.substitute(texp, satelite.R0,  eye(3));
+
+opt.model.function = casadi.Function('fmpc',{satelite.state_vars([1:14 21:28]),tau},{texp});
+
+opt.model.controls = tau;
+opt.continuous_model.integration = 'euler';
+
+opt.dt          = 0.1;
+opt.n_controls  = satelite.robot.n_q;          
+opt.n_states    = length(opt.model.states);
+opt.N           = 5;
+
+
+R       = blkdiag(0.001*eye(3),eye(5));
+
+opt.parameters.name{1} = 'target';
+opt.parameters.name{2} = 'itm_target';
+opt.parameters.dim = vertcat([3,1], [3,1]);
+% opt.parameters.dim = vertcat([3,1]);
+
+% Cost stage function
+ee_fun = satelite.kinematics.rL(casadi.SX.eye(3),vertcat(satelite.state_vars(1:14,1)));
+ee_fun = casadi.Function('ee',{opt.model.states(1:6+satelite.robot.n_q)},{ee_fun(:,end)});
+
+opt.costs.stage.parameters = opt.parameters.name(2);
+opt.costs.stage.function   = @(x,u,varargin) 1000*sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}).^2) + u'*R*u + x(1:3)'*1e1*x(1:3);% + x(15:17)'*1*x(15:17);
+
+opt.costs.general.parameters = opt.parameters.name;
+opt.costs.general.function   = @(x,u,varargin) 1000*(varargin{end}-varargin{end-1})'*(varargin{end}-varargin{end-1});
+
+opt.constraints.states.upper  = vertcat( inf*ones(3,1),  inf*ones(3,1), 3600*2*pi/60*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  inf*ones(3,1),  0.0939*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.lower  = vertcat(-inf*ones(3,1), -inf*ones(3,1), -3600*2*pi/60*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -inf*ones(3,1), -0.0939*ones(satelite.robot.n_q-3,1));
+
+opt.constraints.control.upper = vertcat(0.175*ones(3,1),50*ones(5,1));
+opt.constraints.control.lower = -opt.constraints.control.upper;
+
+opt.constraints.general.parameters  = opt.parameters.name(2);
+opt.constraints.general.function{1} = @(x,varargin) ee_fun(x(1:6+satelite.robot.n_q))-varargin{1};
+opt.constraints.general.elements{1} = 'end';
+opt.constraints.general.type{1} = 'equality';
+
+% opt.constraints.general.parameters  = opt.parameters.name(2);
+% opt.constraints.general.function{2} = @(x,varargin) x(1:3);
+% opt.constraints.general.elements{2} = 'end';
+% opt.constraints.general.type{2} = 'equality';
+
+opt.constraints.parameters.name  = opt.parameters.name(2);
+opt.constraints.parameters.upper = inf*ones(3,1);
+opt.constraints.parameters.lower = -inf*ones(3,1);
+
+% Define inputs to optimization
+opt.input.vector = opt.parameters.name(1);
+opt.solver = 'ipopt';
+[solver_mpc,args_mpc] = build_mpc(opt);
+ine_wheels = {satelite.robot.links.inertia};
+ine_wheels = ine_wheels{2};
+
+
+%% simulation loop
+% simulation parameters
+mpc_x0   = zeros(1,length(args_mpc.vars{1}));
+
+dq0 = casadi.Function('dq0', {satelite.R0,satelite.state_vars([1:14 21:end])}, {-H00\H0q*satelite.state_vars(21:end)});
+xsat = xsat_ini([1:14 21:end],1);
+
+
+for k = 1:20000
+    k
+    link_positions(:,:,k) = full(satelite.kinematics.rL(R0s(:,:,k),vertcat(xsat(1:6+satelite.robot.n_q,k))));
+
+    mpc_input = vertcat(xsat(:,k), link_positions(:,end,1)-[1;1;0]);
+    tic
+    sol = solver_mpc('x0', mpc_x0, 'lbx', args_mpc.lbx, 'ubx', args_mpc.ubx, ...
+                     'lbg', args_mpc.lbg, 'ubg', args_mpc.ubg, 'p', mpc_input);
+    mpc_x0        = full(sol.x);
+
+    torque(:,k) = full(sol.x(args_mpc.vars{3}));
+    xsat(:,k+1) = xsat(:,k) + full(opt.dt*opt.model.function(xsat(:,k),torque(:,k))); %vertcat(xsat(satelite.idx.velocities,k),full(feval));
+
+    tt(:,k) = full(dq0(R0s(:,:,k),xsat(:,k)));
+    % update satelite quaternion, R0 according to next omega
+    [q0s(:,k+1), R0s(:,:,k+1)]  = quaternion.integrate(tt(1:3,k),q0s(:,k),opt.dt);
+
+    xsat_full = vertcat(xsat(1:14,k),tt(:,k),xsat(15:end,k));
+    mom_sate(:,k) = full(moment_satelite(R0s(:,:,k),xsat_full));
+    mom_wheels(:,k) = full(moment_wheels(R0s(:,:,k),xsat_full));
+    mom_arm(:,k) = full(moment_arm(R0s(:,:,k),xsat_full));
+    itmt(:,k) = full(sol.x(end-2:end));
+
+
+end
+
+%%
+close all
+
+figure
+plot(itmt(1,:),'--r')
+hold on
+plot(squeeze(link_positions(1,end,:)),'-r')
+plot(itmt(2,:),'--g')
+plot(squeeze(link_positions(2,end,:)),'-g')
+plot(itmt(3,:),'--b')
+plot(squeeze(link_positions(3,end,:)),'-b')
+xlabel('Time [s]')
+ylabel('Position [m]')
+grid on
+title('Position of end effector')
+
+figure
+plot(xsat(1,:),'r')
+hold on
+plot(xsat(2,:),'g')
+plot(xsat(3,:),'b')
+xlabel('Time [s]')
+ylabel('Position [rad]')
+grid on
+title('Angular position of the base')
+
+
+figure
+plot(xsat(15,:),'r')
+hold on
+plot(xsat(16,:),'g')
+plot(xsat(17,:),'b')
+xlabel('Time [s]')
+ylabel('Velocity [rad/s]')
+grid on
+title('Angular velocity of the reaction wheels')
+
+
+figure
+plot(xsat(18,:),'r')
+hold on
+plot(xsat(19,:),'g')
+plot(xsat(20,:),'b')
+plot(xsat(21,:),'c')
+plot(xsat(22,:),'m')
+xlabel('Time [s]')
+ylabel('Velocity [rad/s]')
+grid on
+title('Angular velocity of the manipulator joints')
+
+figure
+plot(torque(1,:),'r')
+hold on
+plot(torque(2,:),'g')
+plot(torque(3,:),'b')
+xlabel('Time [s]')
+ylabel('Torque [Nm]')
+grid on
+title('Reaction wheels torques')
+
+figure
+plot(torque(4,:),'r')
+hold on
+plot(torque(5,:),'g')
+plot(torque(6,:),'b')
+plot(torque(7,:),'c')
+plot(torque(8,:),'m')
+xlabel('Time [s]')
+ylabel('Torque [Nm]')
+grid on
+title('Manipulator joint torques')

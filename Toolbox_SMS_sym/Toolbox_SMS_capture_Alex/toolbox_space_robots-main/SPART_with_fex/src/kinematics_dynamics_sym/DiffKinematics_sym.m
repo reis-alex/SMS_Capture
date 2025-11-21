@@ -53,6 +53,7 @@ for i=1:n
         Bij{i}{j}=SX.sym('Bij',6,6);
     end
 end
+
 %Compute Bij
 for j=1:n
     for i=1:n
