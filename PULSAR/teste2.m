@@ -22,6 +22,7 @@ xsat_ini = vertcat(zeros(6,1), ...                  % null initial displacements
                     20*pi/180,30*pi/180,20*pi/180,10*pi/180,25*pi/180, ... % last 5: q_arm
                     zeros(length(satelite.idx.velocities),1));                               % null velocities
 
+% used as reference
 % xsat_ini = vertcat(zeros(6,1), ...                  % null initial displacements
 %                     zeros(3,1), ... % first 3: q_wheels,
 %                     225*pi/180,150*pi/180,-50*pi/180,30*pi/180,25*pi/180, ... % last 5: q_arm
@@ -37,12 +38,14 @@ Cs = satelite.dynamics.C;
 link_positions(:,:,1) = full(satelite.kinematics.rL(R0s,xsat_ini(1:6+satelite.robot.n_q)));
 pos_t = full(link_positions(:,end,1));
 
+% since r0 = 0, the reference computed here is w.r.t. the body frame
 
 plot3(link_positions(1,7:end,1),link_positions(2,7:end,1),link_positions(3,7:end,1),'-og')
 hold on
 plot3(link_positions(1,end,1),link_positions(2,end,1),link_positions(3,end,1),'-xr','LineWidth',10)
 plot3(link_positions(1,7,1),link_positions(2,7,1),link_positions(3,7,1),'or','LineWidth',10)
 axis auto
+
 %%
 H_sym = satelite.dynamics.H(satelite.R0,satelite.state_vars);
 C_sym = satelite.dynamics.C(satelite.R0,satelite.state_vars);
@@ -59,23 +62,57 @@ moment_satelite = casadi.Function('h_sat',{satelite.R0,satelite.state_vars},{H00
 moment_wheels = casadi.Function('h_wheel',{satelite.R0,satelite.state_vars},{H0q(:,1:3)*satelite.state_vars(satelite.idx.velocities(7:9))});
 moment_arm = casadi.Function('h_arm',{satelite.R0,satelite.state_vars},{H0q(:,4:end)*satelite.state_vars(satelite.idx.velocities(10:14))});
 
+hsat = H0q(:,4:end)*satelite.state_vars(satelite.idx.velocities(10:14)) + H0q(:,1:3)*satelite.state_vars(satelite.idx.velocities(7:9));
+hwheel = H0q(:,1:3)*satelite.state_vars(satelite.idx.velocities(7:9));
+harm = H0q(:,4:end)*satelite.state_vars(satelite.idx.velocities(10:14));
+
+% R0 function
+angles = satelite.state_vars(1:3);
+yaw = angles(3);
+pitch = angles(2);
+roll = angles(1);
+c1 = cos(yaw);
+s1 = sin(yaw);
+c2 = cos(pitch);
+s2 =  sin(pitch);
+c3 = cos(roll);
+s3 =  sin(roll);
+R = [c1*c2, c1*s2*s3 - s1*c3, c1*s2*c3 + s1*s3;
+     s1*c2, s1*s2*s3 + c1*c3, s1*s2*c3 - c1*s3;
+     -s2,   c2*s3,             c2*c3];
+Rf = casadi.Function('R0',{satelite.state_vars(1:3)},{R});
+
+EE_idx = find(strcmp({satelite.robot.links.name},'Link_6_'));
+J = satelite.Jacob(EE_idx);
+Jm = J.Jm;
+Jm = casadi.substitute(Jm, satelite.R0,  R);
+mu = casadi.Function('manipulability',{satelite.state_vars([1:14 21:end])},{det(Jm*Jm'+(1e-6)*eye(6))});
+
 %% MPC
 tau = casadi.SX.sym('torque_arm',satelite.robot.n_q,1);
 
 % Define MPC problem
 opt.model.states   = [satelite.state_vars([1:14 21:end])];
-f_mpc = satelite.dynamics.ddX(satelite.R0,satelite.state_vars,tau);
+f_mpc = vertcat(satelite.dynamics.ddX(satelite.R0,satelite.state_vars,tau));
 f_mpc = casadi.substitute(f_mpc, satelite.state_vars(15:20),  -H00\H0q*satelite.state_vars(21:end));
 
-texp = [satelite.state_vars(satelite.idx.velocities);f_mpc(7:end)];
+texp = [satelite.state_vars(satelite.idx.velocities);f_mpc(7:end);];
 texp = casadi.substitute(texp, satelite.state_vars(15:20),  -H00\H0q*satelite.state_vars(21:end));
-texp = casadi.substitute(texp, satelite.R0,  eye(3));
+texp = casadi.substitute(texp, satelite.R0,  R);
 
-%====
-% texp = casadi.substitute(texp, tau(1:3),  zeros(3,1));
-%====
+hsatexp = hsat;
+hsatexp = casadi.substitute(hsatexp, satelite.R0,  R);
+hsatf = casadi.Function('Hsat',{satelite.state_vars([1:14 21:end])},{hsatexp(1:3)});
 
-opt.model.function = casadi.Function('fmpc',{satelite.state_vars([1:14 21:28]),tau},{texp});
+harmexp = harm;
+harmexp = casadi.substitute(harmexp, satelite.R0,  R);
+harmf = casadi.Function('Hsat',{satelite.state_vars([1:14 21:end])},{harmexp(1:3)});
+
+hwheelexp = hwheel;
+hwheelexp = casadi.substitute(hwheel, satelite.R0,  R);
+hwheelf = casadi.Function('Hsat',{satelite.state_vars([1:14 21:end])},{hwheelexp(1:3)});
+
+opt.model.function = casadi.Function('fmpc',{vertcat(satelite.state_vars([1:14 21:28])),tau},{texp});
 
 opt.model.controls = tau;
 opt.continuous_model.integration = 'euler';
@@ -83,47 +120,44 @@ opt.continuous_model.integration = 'euler';
 opt.dt          = 0.1;
 opt.n_controls  = satelite.robot.n_q;          
 opt.n_states    = length(opt.model.states);
-opt.N           = 5;
-
+opt.N           = 4;
 
 % R       = blkdiag(1*eye(3),1*eye(5));
 
 opt.parameters.name{1} = 'target';
 opt.parameters.name{2} = 'itm_target';
-opt.parameters.dim = vertcat([3,1], [3,1]);
-% opt.parameters.dim = vertcat([3,1]);
+opt.parameters.name{3} = 'mom_target';
+opt.parameters.name{4} = 'sign';
+opt.parameters.dim = vertcat([3,1], [3,1], [3,1], [3,1]);
 
 % Cost stage function
-ee_fun = satelite.kinematics.rL(casadi.SX.eye(3),vertcat(satelite.state_vars(1:14,1)));
-ee_fun = casadi.Function('ee',{opt.model.states(1:6+satelite.robot.n_q)},{ee_fun(:,end)});
+ee_fun = satelite.kinematics.rL(R,vertcat(satelite.state_vars(1:14,1)));
+ee_fun = casadi.Function('ee',{opt.model.states(1:6+satelite.robot.n_q)},{R'*ee_fun(:,end)});
 
-opt.costs.stage.parameters = opt.parameters.name(2);
-opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2);%+ x(1:3)'*1e3*x(1:3);
-opt.costs.general.parameters = opt.parameters.name;
-opt.costs.general.function   = @(x,u,varargin) (varargin{end}-varargin{end-1})'*(varargin{end}-varargin{end-1});
+opt.costs.stage.parameters = opt.parameters.name(1:4);
+opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(4:6)).^2) + (hwheelf(x(1:22))-varargin{:}(10:12).*varargin{:}(7:9))'*(hwheelf(x(1:22))-varargin{:}(10:12).*varargin{:}(7:9))*1e2;
+% opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(4:6)).^2) + x(1:3)'*x(1:3)*1e3;
 
-opt.constraints.states.upper  = vertcat( inf*ones(3,1),  inf*ones(3,1), 3600*2*pi/60*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  inf*ones(3,1),  0.15*ones(satelite.robot.n_q-3,1));
-opt.constraints.states.lower  = vertcat(-inf*ones(3,1), -inf*ones(3,1), -3600*2*pi/60*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -inf*ones(3,1), -0.15*ones(satelite.robot.n_q-3,1));
+opt.costs.general.parameters = opt.parameters.name(1:2);
+opt.costs.general.function   = @(x,u,varargin) 1e3*(varargin{end}-varargin{end-1})'*(varargin{end}-varargin{end-1});
+
+opt.constraints.states.upper  = vertcat( inf*ones(3,1),  inf*ones(3,1), 3600*2*pi/60*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  inf*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.lower  = vertcat(-inf*ones(3,1), -inf*ones(3,1), -3600*2*pi/60*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -inf*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
 
 opt.constraints.control.upper = vertcat(0.175*ones(3,1),50*ones(5,1));
 opt.constraints.control.lower = -opt.constraints.control.upper;
 
 opt.constraints.general.parameters  = opt.parameters.name(2);
-opt.constraints.general.function{1} = @(x,varargin) ee_fun(x(1:6+satelite.robot.n_q))-varargin{1};
+opt.constraints.general.function{1} = @(x,varargin) (ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3));
 opt.constraints.general.elements{1} = 'end';
 opt.constraints.general.type{1} = 'equality';
 
-% opt.constraints.general.parameters  = opt.parameters.name(1);
-% opt.constraints.general.function{1} = @(x,varargin) x(1:3);
-% opt.constraints.general.elements{1} = 'end';
-% opt.constraints.general.type{1} = 'equality';
-
 opt.constraints.parameters.name  = opt.parameters.name(2);
-opt.constraints.parameters.upper = inf*ones(3,1);
-opt.constraints.parameters.lower = -inf*ones(3,1);
+opt.constraints.parameters.upper =  vertcat(inf*ones(3,1));
+opt.constraints.parameters.lower = -vertcat(inf*ones(3,1));
 
 % Define inputs to optimization
-opt.input.vector = opt.parameters.name(1);
+opt.input.vector = opt.parameters.name([1 3 4]);
 opt.solver = 'ipopt';
 [solver_mpc,args_mpc] = build_mpc(opt);
 ine_wheels = {satelite.robot.links.inertia};
@@ -132,52 +166,84 @@ ine_wheels = ine_wheels{2};
 
 %% simulation loop
 % simulation parameters
+mom_arm = 0.01*ones(6,1);
+mom_wheels = 0.01*ones(6,2);
 mpc_x0   = zeros(1,length(args_mpc.vars{1}));
 
 dq0 = casadi.Function('dq0', {satelite.R0,satelite.state_vars([1:14 21:end])}, {-H00\H0q*satelite.state_vars(21:end)});
-xsat = xsat_ini([1:14 21:end],1);
-
-
+xsat(:,1) = vertcat(xsat_ini([1:14 21:end],1));
+sw = 0;
+sw2 = 1;
+feval = zeros(31,1);
+pred_states = zeros(opt.n_states,opt.N);
+%%
 for k = 1:20000
     k
-    link_positions(:,:,k) = full(satelite.kinematics.rL(R0s(:,:,k),vertcat(xsat(1:6+satelite.robot.n_q,k))));
 
-%     mpc_input = vertcat(xsat(:,k), link_positions(:,end,1)-[1;1;0]);
+    link_positions(:,:,k) = full(R0s(:,:,k)'*satelite.kinematics.rL(R0s(:,:,k),vertcat(xsat(1:6+satelite.robot.n_q,k))));
+    ref =  [2.806; -0.9745; -0.1926];
 
-    mpc_input = vertcat(xsat(:,k), [2.806; -0.9745; -0.1926]);
+    if norm(link_positions(:,end,k)-ref)>=0.0005 && sw == 0
+        htg = zeros(3,1);
+        auxi = 0;
+        sig = zeros(3,1);
+    else
+        if sw2 == 1
+            auxi = 1;
+            sw = 1;
+            sw2 = 0;
+        end
+    end 
 
+    if k<2
+        mom_tgt = 0.01*ones(3,1);
+    else
+%         mom_tgt = mom_arm(1:3,k-1);
+          mom_tgt = pred_mom_arm(:,3);
+    end
+%     mpc_input = vertcat(xsat(:,k),ref, mom_tgt,-sign(xsat(1:3,k)));
+    mpc_input = vertcat(xsat(:,k),ref, mom_tgt,sign(mom_tgt));
 
-    
     sol = solver_mpc('x0', mpc_x0, 'lbx', args_mpc.lbx, 'ubx', args_mpc.ubx, ...
         'lbg', args_mpc.lbg, 'ubg', args_mpc.ubg, 'p', mpc_input);
     mpc_x0        = full(sol.x);
     torque(:,k) = full(sol.x(args_mpc.vars{3}));
-
-    xsat(:,k+1) = xsat(:,k) + full(opt.dt*opt.model.function(xsat(:,k),torque(:,k))); %vertcat(xsat(satelite.idx.velocities,k),full(feval));
+    pred_states = reshape(full(sol.x(1:length(opt.model.states)*opt.N)),length(opt.model.states),opt.N);
+    feval = full(opt.model.function(xsat(:,k),torque(:,k)));
+    xsat(:,k+1) = xsat(:,k) + opt.dt*feval; %vertcat(xsat(satelite.idx.velocities,k),full(feval));
     
-    tt(:,k) = full(dq0(R0s(:,:,k),xsat(:,k)));
+%     check_feas(solver_mpc.stats())
+
+
+    tt(:,k) = full(dq0(R0s(:,:,k),xsat(1:22,k)));
     % update satelite quaternion, R0 according to next omega
     [q0s(:,k+1), R0s(:,:,k+1)]  = quaternion.integrate(tt(1:3,k),q0s(:,k),opt.dt);
-
-    xsat_full = vertcat(xsat(1:14,k),tt(:,k),xsat(15:end,k));
+    Rtest = Rf(xsat(1:3,k));
+    xsat_full = vertcat(xsat(1:14,k),tt(:,k),xsat(15:22,k));
+    mom_arm(:,k) = full(moment_arm(R0s(:,:,k),xsat_full));
     mom_sate(:,k) = full(moment_satelite(R0s(:,:,k),xsat_full));
     mom_wheels(:,k) = full(moment_wheels(R0s(:,:,k),xsat_full));
-    mom_arm(:,k) = full(moment_arm(R0s(:,:,k),xsat_full));
     itmt(:,k) = full(sol.x(end-2:end));
-
-
+    for jj = 1:opt.N
+        pred_mom_arm(:,jj) = full(harmf(pred_states(1:22,jj)));
+    end
+    tt2(:,k) = pred_mom_arm(:,3);
+    manip(k) = full(mu(xsat(:,k)));
 end
 
 %%
 close all
 
 figure
-plot(itmt(1,:),'--r')
+plot(itmt(1,:),'-.r')
 hold on
+plot(ref(1,:)*ones(1,length(squeeze(link_positions(1,end,:)))),'--r')
 plot(squeeze(link_positions(1,end,:)),'-r')
-plot(itmt(2,:),'--g')
+plot(itmt(2,:),'-.g')
+plot(ref(2,:)*ones(1,length(squeeze(link_positions(1,end,:)))),'--g')
 plot(squeeze(link_positions(2,end,:)),'-g')
-plot(itmt(3,:),'--b')
+plot(itmt(3,:),'-.b')
+plot(ref(3,:)*ones(1,length(squeeze(link_positions(1,end,:)))),'--b')
 plot(squeeze(link_positions(3,end,:)),'-b')
 xlabel('Time [s]')
 ylabel('Position [m]')
@@ -194,7 +260,6 @@ ylabel('Position [rad]')
 grid on
 title('Angular position of the base')
 
-
 figure
 plot(xsat(15,:),'r')
 hold on
@@ -204,7 +269,6 @@ xlabel('Time [s]')
 ylabel('Velocity [rad/s]')
 grid on
 title('Angular velocity of the reaction wheels')
-
 
 figure
 plot(xsat(18,:),'r')
@@ -240,11 +304,22 @@ ylabel('Torque [Nm]')
 grid on
 title('Manipulator joint torques')
 
-figure
-plot(mom_sate(1,:),'b'); hold on; plot(-(mom_arm(1,:)+mom_wheels(1,:)),'--r')
-figure
-plot(mom_sate(1,:),'b'); hold on; plot(mom_arm(1,:),'-g'),plot(mom_wheels(1,:),'--r')
+% figure
+% plot(xsat(23,:),'r')
+% hold on
+% plot(xsat(24,:),'g')
+% plot(xsat(25,:),'b')
+% title('Integral of h_{sat}')
 
+
+figure
+subplot(131)
+plot(mom_sate(1,:),'b'); hold on; plot(mom_arm(1,:),'-g'),plot(mom_wheels(1,:),'--r')
+subplot(132)
+plot(mom_sate(2,:),'b'); hold on; plot(mom_arm(2,:),'-g'),plot(mom_wheels(2,:),'--r')
+subplot(133)
+plot(mom_sate(3,:),'b'); hold on; plot(mom_arm(3,:),'-g'),plot(mom_wheels(3,:),'--r')
+legend('mom sat','mom bras', 'mom roues')
 
 figure
 plot(mom_wheels(1,:),'-r')
@@ -264,4 +339,16 @@ for i = 1:k
     view([-37.5 30])
     drawnow
     grid
+end
+
+%%
+function [] = check_feas(stats)
+        if ~stats.success
+            disp('Solver failed.');
+            disp(['Return status: ', stats.return_status]);
+
+            if contains(stats.return_status, 'Infeasible')
+                error('Problem is infeasible!');
+            end
+        end
 end

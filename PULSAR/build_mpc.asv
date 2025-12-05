@@ -47,8 +47,6 @@ if isfield(opt.model,'perturbation')
         opt.parameters.name = vertcat(opt.parameters.name, ['d_' int2str(i)]);
         opt.input.vector{length(opt.input.vector)+1} = {['d_' int2str(i)]};
     end
-else
-    perturbation_vector = 0;
 end
 
 % sort all parameters and their destinations
@@ -243,8 +241,7 @@ if isfield(opt,'continuous_model')
             for k = 1:opt.N
                 obj             = obj + stagecost_fun(X(:,k),U(:,k),sort_param_stc(k));
                 if isfield(opt.model,'parameters')
-%                     g               = [g; X(:,k+1)-(X(:,k)+opt.dt*f(X(:,k),U(:,k),vertcat(opt.model.parameters{:}),perturbation_vector(k)))];
-                    g               = [g; X(:,k+1)-(X(:,k)+opt.dt*f(X(:,k),U(:,k),vertcat(opt.model.parameters{:})))];
+                    g               = [g; X(:,k+1)-(X(:,k)+opt.dt*f(X(:,k),U(:,k),vertcat(opt.model.parameters{:}),perturbation_vector(k)))];
                 else
                     g               = [g; X(:,k+1)-(X(:,k)+opt.dt*f(X(:,k),U(:,k)))];
                 end

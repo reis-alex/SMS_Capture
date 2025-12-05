@@ -211,7 +211,7 @@ classdef SPART_casadi
 
             P0 = obj.diffkinematics.P0(obj.R0);
             pm = obj.diffkinematics.pm(obj.R0,obj.state_vars);
-            rL = obj.kinematics.rL(obj.R0,obj.state_vars);
+            rL = obj.kinematics.rL(obj.R0,obj.state_vars(1:length(obj.state_vars)/2));
             [J0,Jm] = Jacob_sym(rL(:,idx),r0,rL,P0,pm,idx,obj.robot);
             out.J0 = J0;
             out.Jm = Jm;
