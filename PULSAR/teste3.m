@@ -109,8 +109,8 @@ G_r = G(:, 1:nr);
 lambda = 1e-8;
 tau_r = mtimes((G_r' * G_r + lambda*eye(nr)) \ (G_r' ), r);
 
-Kp1 = 10*eye(3);
-Kv1 = 0.1*eye(3);
+Kp1 = 50*eye(3);
+Kv1 = 0.01*eye(3);
 K1  = horzcat(Kp1,Kv1);
 
 theta_d = casadi.SX.sym('theta_d',3,1);
@@ -138,6 +138,11 @@ texp = casadi.substitute(texp, satelite.state_vars(15:20),  -H00\H0q*satelite.st
 texp = casadi.substitute(texp, satelite.R0,  R);
 texp = casadi.substitute(texp,tau(1:3),NDI_wheels(satelite.state_vars([1:14 21:end]),desired0(1:3),desired0(4:6)));
 
+q0dot = -H00\H0q*satelite.state_vars(21:end);
+omega0 = q0dot(1:3);
+omega0 = casadi.substitute(omega0, satelite.R0,  R);
+omega0 = casadi.Function('omega0',{satelite.state_vars([1:14 21:end])},{omega0});
+
 accel =  casadi.substitute(f_mpc(1:3),satelite.state_vars(15:20),  -H00\H0q*satelite.state_vars(21:end));
 accel = casadi.substitute(accel, satelite.R0,  R);
 accel = casadi.substitute(accel,tau(1:3),NDI_wheels(satelite.state_vars([1:14 21:end]),desired0(1:3),desired0(4:6)));
@@ -155,6 +160,8 @@ opt.n_states    = length(opt.model.states);
 opt.N           = 4;
 
 % R       = blkdiag(1*eye(3),1*eye(5));
+p = 10*pi/180;
+P = eye(3)*1/(p^2);
 
 opt.parameters.name{1} = 'target';
 opt.parameters.name{2} = 'itm_target';
@@ -166,15 +173,15 @@ ee_fun = satelite.kinematics.rL(R,vertcat(satelite.state_vars(1:14,1)));
 ee_fun = casadi.Function('ee',{opt.model.states(1:6+satelite.robot.n_q)},{R'*ee_fun(:,end)});
 
 opt.costs.stage.parameters = opt.parameters.name(1:3);
-opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(4:6)).^2) + varargin{:}(7)*(u(4:6)'*u(4:6)*1e3 + x(18:22)'*x(18:22))*1e3;%u(6:8)'*u(6:8)*1e2 +
+opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(4:6)).^2) + varargin{:}(1)*(x(1:3,end)'*1e6*x(1:3,end) + (x(15:17,end)-10)'*1e2*(x(15:17,end)-10));% + varargin{:}(7)*(omega0(x)'*0*omega0(x) + 1e5*x(1:3)'*x(1:3));% + x(18:22)'*x(18:22))*1e3;%u(6:8)'*u(6:8)*1e2 +
 
 opt.costs.general.parameters = opt.parameters.name(1:2);
-opt.costs.general.function   = @(x,u,varargin) (varargin{2}-varargin{1})'*(varargin{2}-varargin{1});
+opt.costs.general.function   = @(x,u,varargin) 1e5*(varargin{2}-varargin{1})'*(varargin{2}-varargin{1});
 
 opt.constraints.states.upper  = vertcat( inf*ones(3,1),  inf*ones(3,1), inf*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  3600*2*pi/60*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
 opt.constraints.states.lower  = vertcat(-inf*ones(3,1), -inf*ones(3,1), -inf*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -3600*2*pi/60*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
 
-opt.constraints.control.upper = vertcat(50*ones(5,1), 15*pi/180*ones(3,1), 0.1*ones(3,1)); %0.175*ones(3,1),
+opt.constraints.control.upper = vertcat(50*ones(5,1), p*ones(3,1), 0.2*ones(3,1)); %0.175*ones(3,1),
 opt.constraints.control.lower = -opt.constraints.control.upper;
 
 opt.constraints.general.parameters  = opt.parameters.name(2);
@@ -184,11 +191,9 @@ opt.constraints.general.type{1}     = 'equality';
 
 opt.constraints.general.function{2} = @(x,u,varargin) vertcat(NDI_wheels(x,u(6:8),u(9:11))-0.175*ones(3,1), ...
                                                              -NDI_wheels(x,u(6:8),u(9:11))-0.175*ones(3,1));
-% opt.constraints.general.function{2} = @(x,u,varargin) vertcat(NDI_wheels(x(:,1),u(6:8,1),u(9:11,1))-0.175*ones(3,1), ...
-%                                                                 -NDI_wheels(x(:,1),u(6:8,1),u(9:11,1))-0.175*ones(3,1));
 opt.constraints.general.elements{2} = 'N';
-% opt.constraints.general.elements{2} = 'all';
 opt.constraints.general.type{2} = 'inequality';
+
 
 opt.constraints.parameters.name  = opt.parameters.name(2);
 opt.constraints.parameters.upper =  vertcat(inf*ones(3,1));
@@ -222,7 +227,7 @@ for k = 1:2000
 %     ref =  [2.806; -0.9745; -0.1926];
 ref =  [5.0528; 0.6535; -2.0646];
 
-    if norm(link_positions(:,end,k)-ref)>=0.0005 && sw == 0
+    if k<50 %norm(link_positions(:,end,k)-ref)>=0.0005 && sw == 0
         htg = zeros(3,1);
         auxi = 0;
         sig = zeros(3,1);
@@ -233,7 +238,6 @@ ref =  [5.0528; 0.6535; -2.0646];
             sw2 = 0;
         end
     end 
-
 
     mpc_input = vertcat(xsat(:,k),ref,auxi);
 
@@ -250,20 +254,21 @@ ref =  [5.0528; 0.6535; -2.0646];
     feval = full(opt.model.function(xsat(:,k),vertcat(torque_arm(:,k),desired(:,k))));
     xsat(:,k+1) = xsat(:,k) + opt.dt*feval;
 
-%     check_feas(solver_mpc.stats())
+    check_feas(solver_mpc.stats())
 
     % update satelite quaternion, R0 according to next omega
     tt(:,k) = full(dq0(R0s(:,:,k),xsat(1:22,k)));
     [q0s(:,k+1), R0s(:,:,k+1)]  = quaternion.integrate(tt(1:3,k),q0s(:,k),opt.dt);
-    xsat_full = vertcat(xsat(1:14,k),tt(:,k),xsat(15:22,k));
+    xsat_full(:,k) = vertcat(xsat(1:14,k),tt(:,k),xsat(15:22,k));
 
     % compute instantaneous momenta
-    mom_arm(:,k) = full(moment_arm(R0s(:,:,k),xsat_full));
-    mom_sate(:,k) = full(moment_satelite(R0s(:,:,k),xsat_full));
-    mom_wheels(:,k) = full(moment_wheels(R0s(:,:,k),xsat_full));
+    mom_arm(:,k) = full(moment_arm(R0s(:,:,k),xsat_full(:,k)));
+    mom_sate(:,k) = full(moment_satelite(R0s(:,:,k),xsat_full(:,k)));
+    mom_wheels(:,k) = full(moment_wheels(R0s(:,:,k),xsat_full(:,k)));
 
     itmt(:,k) = full(sol.x(end-2:end));
     accelerations(:,k) = full(accel(xsat(:,k),torque_arm(:,k),desired(1:3,k),desired(4:6,k)));
+    cost(k) = full(sol.f);
 end
 
 %%

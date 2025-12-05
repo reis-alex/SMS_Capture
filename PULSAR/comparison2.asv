@@ -145,13 +145,13 @@ p = 10*pi/180;
 P = eye(3)*1/(p^2);
 opt.costs.stage.parameters = opt.parameters.name(2:3);
 % opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2) + 1e5*(x(1:3)'*x(1:3) + omega0(x)'*omega0(x) + x(18:22)'*x(18:22))/(1-varargin{:}(4:6)'*P*varargin{:}(4:6));
-opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2) ;
+opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2) + (x(18:22)'*x(18:22))/(1-varargin{:}(4)+eps);
 
 opt.costs.general.parameters = opt.parameters.name(1:3);
-opt.costs.general.function   = @(x,u,varargin) 1e4*(varargin{2}-varargin{1})'*(varargin{2}-varargin{1}) + (x(1:3,end)'*1e3*x(1:3,end))/(1-varargin{3}+eps); %+ omega0(x(:,end))'*1e2*omega0(x)
+opt.costs.general.function   = @(x,u,varargin) 1e4*(varargin{2}-varargin{1})'*(varargin{2}-varargin{1}) + (x(1:3,end)'*1e5*x(1:3,end)  + (x(15:17,end)-10000*x(1:3,end))'*1e2*(x(15:17,end)-10*x(1:3,end)))/(1-varargin{3}+eps); %+ omega0(x(:,end))'*1e2*omega0(x)
 
-opt.constraints.states.upper  = vertcat( p*ones(3,1),  inf*ones(3,1), inf*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  3600*2*pi/60*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
-opt.constraints.states.lower  = vertcat(-p*ones(3,1), -inf*ones(3,1), -inf*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -3600*2*pi/60*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.upper  = vertcat( p*ones(3,1),  inf*ones(3,1), inf*ones(3,1),  inf*ones(satelite.robot.n_q-3,1), 300*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.lower  = vertcat(-p*ones(3,1), -inf*ones(3,1), -inf*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -300*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
 
 opt.constraints.control.upper = vertcat(0.175*ones(3,1),50*ones(5,1));
 opt.constraints.control.lower = -opt.constraints.control.upper;
@@ -172,9 +172,9 @@ opt.constraints.general.function{2} = @(x,u,varargin) vertcat(reshape(diff(u(4:e
 opt.constraints.general.elements{2} = 'all';
 opt.constraints.general.type{2} = 'inequality';
 
-opt.constraints.general.function{3} = @(x,u,varargin) vertcat(harmf(x)-100
-opt.constraints.general.elements{3} = 'end';
-opt.constraints.general.type{3} = 'inequality';
+% opt.constraints.general.function{3} = @(x,u,varargin) vertcat(harmf(x)-100, -harmf(x)-100);
+% opt.constraints.general.elements{3} = 'end';
+% opt.constraints.general.type{3} = 'inequality';
 
 opt.constraints.parameters.name  = opt.parameters.name(2);
 opt.constraints.parameters.upper =  vertcat(inf*ones(3,1));
@@ -201,7 +201,7 @@ sw2 = 1;
 feval = zeros(31,1);
 pred_states = zeros(opt.n_states,opt.N);
 ref =  [2.806; -0.9745; -0.1926];
-
+ref =  [5.0528; 0.6535; -2.0646];
 %%
     
 for k = 1:6000

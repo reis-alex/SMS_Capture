@@ -142,13 +142,13 @@ ee_fun = satelite.kinematics.rL(R,vertcat(satelite.state_vars(1:14,1)));
 ee_fun = casadi.Function('ee',{opt.model.states(1:6+satelite.robot.n_q)},{R'*ee_fun(:,end)});
 
 opt.costs.stage.parameters = opt.parameters.name(2);
-opt.costs.stage.function   = @(x,u,varargin) sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2) + (x(1:3)'*1e7*x(1:3) + omega0(x)'*1e6*omega0(x));%(hsatf(x)'*hsatf(x))*1e4;
+opt.costs.stage.function   = @(x,u,varargin) 1e3*sum((ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3)).^2) + u'*1e3*u;% + (x(1:3)'*1e7*x(1:3) + omega0(x)'*1e6*omega0(x) + u(1:3)'*1e3*u(1:3));%(hsatf(x)'*hsatf(x))*1e4;
 
 opt.costs.general.parameters = opt.parameters.name(1:2);
-opt.costs.general.function   = @(x,u,varargin) (varargin{end}-varargin{end-1})'*(varargin{end}-varargin{end-1});
+opt.costs.general.function   = @(x,u,varargin) 1e5*(varargin{end}-varargin{end-1})'*(varargin{end}-varargin{end-1});
 
-opt.constraints.states.upper  = vertcat( inf*ones(3,1),  inf*ones(3,1), inf*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  3600*2*pi/60*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
-opt.constraints.states.lower  = vertcat(-inf*ones(3,1), -inf*ones(3,1), -inf*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -3600*2*pi/60*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.upper  = vertcat( 5*pi/180*ones(3,1),  inf*ones(3,1), inf*ones(3,1),  inf*ones(satelite.robot.n_q-3,1),  3600*2*pi/60*ones(3,1),  0.09*ones(satelite.robot.n_q-3,1));
+opt.constraints.states.lower  = vertcat(-5*pi/180*ones(3,1), -inf*ones(3,1), -inf*ones(3,1), -inf*ones(satelite.robot.n_q-3,1), -3600*2*pi/60*ones(3,1), -0.09*ones(satelite.robot.n_q-3,1));
 
 opt.constraints.control.upper = vertcat(0.175*ones(3,1),50*ones(5,1));
 opt.constraints.control.lower = -opt.constraints.control.upper;
@@ -157,16 +157,6 @@ opt.constraints.general.parameters  = opt.parameters.name(2);
 opt.constraints.general.function{1} = @(x,varargin) (ee_fun(x(1:6+satelite.robot.n_q))-varargin{:}(1:3));
 opt.constraints.general.elements{1} = 'end';
 opt.constraints.general.type{1} = 'equality';
-
-% opt.constraints.general.function{2} = @(x,varargin) x(1:3);
-% opt.constraints.general.elements{2} = 'end';
-% opt.constraints.general.type{2} = 'equality';
-
-opt.constraints.general.function{2} = @(x,u,varargin) vertcat(reshape(diff(x(18:22,:)')',5*(opt.N),1)-0.03*ones(5*(opt.N),1), ...
-                                                              -reshape(diff(x(18:22,:)')',5*(opt.N),1)-0.03*ones(5*(opt.N),1)); 
-opt.constraints.general.elements{2} = 'all';
-opt.constraints.general.type{2} = 'inequality';
-
 
 opt.constraints.parameters.name  = opt.parameters.name(2);
 opt.constraints.parameters.upper =  vertcat(inf*ones(3,1));
@@ -196,7 +186,7 @@ ref =  [2.806; -0.9745; -0.1926];
 
 %%
     
-for k = 1:1000
+for k = 1:2000
     k
 
     link_positions(:,:,k) = full(R0s(:,:,k)'*satelite.kinematics.rL(R0s(:,:,k),vertcat(xsat(1:6+satelite.robot.n_q,k))));
@@ -228,18 +218,18 @@ for k = 1:1000
 end
 
 %%
-% save('states','xsat')
-% save('accelerations','accelerations')
-% save('tau','torque')
-% ee_pos = squeeze(link_positions(:,end,:));
-% save('EE','ee_pos');
-% save('inter_ref','itmt')
-% save('mom_arm','mom_arm')
-% save('mom_wheel','mom_wheels')
-% save('mom_sat','mom_sate')
-% save('mom_arm','mom_arm')
-% save('mom_wheel','mom_wheels')
-% save('mom_sat','mom_sate')
+save('states','xsat')
+save('accelerations','accelerations')
+save('tau','torque')
+ee_pos = squeeze(link_positions(:,end,:));
+save('EE','ee_pos');
+save('inter_ref','itmt')
+save('mom_arm','mom_arm')
+save('mom_wheel','mom_wheels')
+save('mom_sat','mom_sate')
+save('mom_arm','mom_arm')
+save('mom_wheel','mom_wheels')
+save('mom_sat','mom_sate')
 
 %%
 close all
